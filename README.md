@@ -4,6 +4,8 @@ The ArcGIS API for JavaScript includes widgets that are building blocks for crea
 
 https://uc.schedule.esri.com/#schedule/56fb2ffb4be5ddcd24000d01/56fb2ffc4be5ddcd24000d02
 
+http://driskull.github.io/uc-2016-widgets-101/#/
+
 # Cover
 
 -
