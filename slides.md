@@ -1,6 +1,6 @@
 <!-- .slide: data-background="./reveal.js/img/title.png" -->
 
-<!-- Presenter: -->
+<!-- Presenter: Matt -->
 # Widgets 101: Customizing and Creating Widgets with the ArcGIS API for JavaScript
 
 ### JC Franco – [@arfncode](https://twitter.com/arfncode)
@@ -16,9 +16,9 @@
 
 # Agenda
 
-- Widgets
-- Building blocks
-- Building our widget
+- About widgets
+- The building blocks of a widget
+- Building our own widget
   - 3.x
   - 4.x
 - Tips & Tricks
@@ -50,7 +50,6 @@
 
 ---
 
-<!-- JC -->
 # Asynchronous Module Definition (AMD)
 
 - Asynchronous loading
@@ -86,6 +85,7 @@
 
 ---
 
+<!-- Presenter: JC -->
 # Building blocks
 
 ![blocks](./images/blocks.gif)
@@ -109,7 +109,6 @@ what you get
 
 ---
 
-<!-- Matt -->
 # Simple widget example
 
 ```js
@@ -288,6 +287,8 @@ Here to help...
 
 ---
 
+<!-- Presenter: Matt -->
+
 # WikiWidget (requirements)
 
 * Use Wikipedia API to geosearch for entries
@@ -309,7 +310,7 @@ Here to help...
 
 ---
 
-<!-- JC -->
+<!-- Presenter: JC -->
 # 4.x
 
 - Widget Architecture
@@ -371,7 +372,6 @@ Here to help...
 
 ---
 
-<!-- Matt -->
 # Preprocessors
 
 - Benefits
