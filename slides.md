@@ -17,11 +17,13 @@
 # Agenda
 
 - About widgets
-- The building blocks of a widget
-- Building our own widget
+- Widget components
+- Building a widget
   - 3.x
   - 4.x
 - Tips & Tricks
+- Resources
+- Q & A
 
 ---
 
@@ -31,6 +33,7 @@
   - Encapsulated
   - Cohesive
   - Single-purpose pieces of functionality 
+  - User interface
 - Why?
   - Reusable
   - Interchangeable
@@ -295,6 +298,10 @@ Here to help...
 * Display results in a list
 * List items should center on the map and display a popup
 * The popup should have a link for more info (wiki page) 
+
+---
+
+# Demo WikiWidget
 
 ---
 
