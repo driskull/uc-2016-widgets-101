@@ -315,7 +315,7 @@ Here to help...
 
 # Building WikiWidget the 3x way
 
-[demo](./demo/3x/index.html)
+[Steps](./steps/3x.md)
 
 ---
 
@@ -369,9 +369,9 @@ Here to help...
 
 ---
 
-# WikiWidget 4.x
+# Building WikiWidget the 4x way
 
-[demo](./demo/4x/index.html)
+[Steps](./steps/4x.md)
 
 ---
 
