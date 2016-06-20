@@ -315,7 +315,7 @@ Here to help...
 
 # Building WikiWidget the 3x way
 
-[Steps](./steps/3x.md)
+[Steps](https://github.com/driskull/uc-2016-widgets-101/blob/gh-pages/steps/3x.md)
 
 ---
 
@@ -371,7 +371,7 @@ Here to help...
 
 # Building WikiWidget the 4x way
 
-[Steps](./steps/4x.md)
+[Steps](https://github.com/driskull/uc-2016-widgets-101/blob/gh-pages/steps/4x.md)
 
 ---
 
