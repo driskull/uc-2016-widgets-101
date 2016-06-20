@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+
+  <link rel="stylesheet" href="//js.arcgis.com/3.17/esri/themes/calcite/esri/esri.css">
+
+  <style>
+    html,
+    body,
+    #map {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+  </style>
+
+  <script type="text/javascript">
+    var package_path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
+    var dojoConfig = {};
+
+  </script>
+
+  <script src="//js.arcgis.com/3.17"></script>
+  <script>
+    var map;
+
+    require([
+      "esri/map",
+      "dojo/domReady!"
+    ], function (
+      Map
+    ) {
+
+      map = new Map("map", {
+        basemap: "dark-gray",
+        zoom: 14,
+        center: [-117.1618, 32.7066]
+      });
+      
+    });
+
+  </script>
+
+</head>
+
+<body class="calcite">
+  <div id="map" class="map"></div>
+</body>
+
+</html>
