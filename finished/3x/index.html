@@ -39,7 +39,7 @@
 
   <script src="//js.arcgis.com/3.17"></script>
   <script>
-    var map;
+    var map, wikiWidget;
 
     require([
       "esri/map",
@@ -56,7 +56,7 @@
         center: [-117.1618, 32.7066]
       });
 
-      var wikiWidget = new WikiWidget({
+      wikiWidget = new WikiWidget({
         map: map
       }, "WikiWidget");
       wikiWidget.startup();

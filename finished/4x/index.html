@@ -37,7 +37,7 @@
 
   <script src="//js.arcgis.com/4.0"></script>
   <script>
-    var map, view;
+    var map, view, wikiWidget;
 
     require([
       "esri/Map",
@@ -63,7 +63,7 @@
         }
       });
 
-      var wikiWidget = new WikiWidget({
+      wikiWidget = new WikiWidget({
         viewModel: {
           view: view
         }
