@@ -303,6 +303,8 @@ Here to help...
 
 # Demo WikiWidget
 
+[Finished 3x widget](http://driskull.github.io/uc-2016-widgets-101/finished/3x/)
+
 ---
 
 # Building WikiWidget
@@ -462,6 +464,7 @@ Here to help...
 
 ---
 
+<!-- Presenter: Matt -->
 ## More widget sessions
 
 - Wednesday
