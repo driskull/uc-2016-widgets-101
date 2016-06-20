@@ -1,0 +1,11 @@
+{
+  "name": "uc-2016-widgets-101-restyling-4x",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "esri": "arcgis-js-api#4.0.0"
+  },
+  "resolutions": {
+    "dojo": "v1.10.4/esri-3.14.0"
+  }
+}
