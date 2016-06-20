@@ -26,14 +26,17 @@
   </style>
 
   <script type="text/javascript">
-    var packagePath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
+    var demoPath = location.pathname;
+    var packagePath = demoPath.substring(0, demoPath.lastIndexOf('/'));
+    var parentPath = packagePath.substring(0, packagePath.lastIndexOf('/'));
+
     var dojoConfig = {
       async: true,
       // The locationPath logic below may look confusing but all its doing is 
       // enabling us to load the api from a CDN and load local modules from the correct location.
       packages: [{
-        name: "widgets",
-        location: packagePath + '/WikiWidget'
+        name: "demo",
+        location: parentPath + '/3x/WikiWidget/'
       }]
     };
   </script>
@@ -44,7 +47,7 @@
 
     require([
       "esri/map",
-      "widgets/WikiWidget",
+      "demo/WikiWidget",
       "dojo/domReady!"
     ], function (
       Map,
