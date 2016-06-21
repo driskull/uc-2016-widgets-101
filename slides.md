@@ -377,7 +377,7 @@ Here to help...
 
 # Tips & best practices
 
-![tricks](./images/tricks.gif)
+![tricks](./images/best-practices.gif)
 
 ---
 
