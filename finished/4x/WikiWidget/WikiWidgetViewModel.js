@@ -1,5 +1,5 @@
 define([
-  "./support/wikiAPIHelper",
+  "demo/common/wikiAPIHelper",
 
   "dojo/_base/lang",
 

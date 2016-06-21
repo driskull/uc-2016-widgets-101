@@ -35,8 +35,12 @@
       // The locationPath logic below may look confusing but all its doing is 
       // enabling us to load the api from a CDN and load local modules from the correct location.
       packages: [{
-        name: "demo",
-        location: parentPath + '/3x/WikiWidget/'
+        name: "demo-widgets",
+        location: parentPath + '/3x/WikiWidget'
+      },
+      {
+        name: "demo-common",
+        location: parentPath + '/common'
       }]
     };
   </script>
@@ -47,7 +51,7 @@
 
     require([
       "esri/map",
-      "demo/WikiWidget",
+      "demo-widgets/WikiWidget",
       "dojo/domReady!"
     ], function (
       Map,

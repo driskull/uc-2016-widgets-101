@@ -1,5 +1,5 @@
 define([
-  "./utils/wikiAPIHelper",
+  "demo-common/wikiHelper",
 
   "dijit/_TemplatedMixin",
   "dijit/_WidgetBase",
@@ -14,49 +14,20 @@ define([
   "dojo/dom-style",
   "dojo/on",
 
-  "esri/geometry/Point",
-
-  "esri/graphic",
-  "esri/InfoTemplate",
-
-  "esri/geometry/mathUtils",
-
-  "esri/symbols/PictureMarkerSymbol",
-
   "dojo/i18n!./nls/WikiWidget",
 
-  "dojo/text!./templates/WikiWidget.html",
-
-  "require"
+  "dojo/text!./templates/WikiWidget.html"
 ], function (
-  wikiAPIHelper,
+  wikiHelper,
   _TemplatedMixin, _WidgetBase, a11yclick,
   array, lang,
   domAttr, domClass, domConstruct, domStyle, on,
-  Point,
-  Graphic, InfoTemplate,
-  mathUtils,
-  PictureMarkerSymbol,
   i18n,
-  templateString,
-  require
+  templateString
 ) {
-
-  var WIKI_ICON_PATH = require.toUrl("./images/wikipedia_32.png");
 
   var MIN_RESULTS = 1;
   var MAX_RESULTS = 10;
-
-  var MIN_SEARCH_RADIUS_IN_METERS = 10;
-  var MAX_SEARCH_RADIUS_IN_METERS = 10000;
-
-  var ICON_SIZE = 24;
-
-  var SYMBOL = new PictureMarkerSymbol({
-    url: WIKI_ICON_PATH,
-    width: ICON_SIZE,
-    height: ICON_SIZE
-  });
 
   var CSS = {
     // button
@@ -84,10 +55,6 @@ define([
     footer: "esri-wikipedia__footer"
   };
 
-  function clamp(value, min, max) {
-    return Math.min(Math.max(value, min), max);
-  }
-
   var WikiWidget = _WidgetBase.createSubclass([_TemplatedMixin], {
 
     baseClass: CSS.base,
@@ -105,7 +72,6 @@ define([
     constructor: function () {
       this._fetchAndUpdate = lang.hitch(this, this._fetchAndUpdate);
       this._updateList = lang.hitch(this, this._updateList);
-      this._addResultGraphics = lang.hitch(this, this._addResultGraphics);
       this._showLoadingStatus = lang.hitch(this, this._showLoadingStatus);
       this._hideLoadingStatus = lang.hitch(this, this._hideLoadingStatus);
       this._openPanel = lang.hitch(this, this._openPanel);
@@ -115,21 +81,25 @@ define([
     },
 
     postCreate: function () {
-      var _self = this;
+      var self = this;
 
       this.inherited(arguments);
 
       domConstruct.place(this._panelNode, this.map.root);
 
       this.own(
-        on(this.domNode, a11yclick, lang.hitch(this, this._toggle)),
-        on(this._closeNode, a11yclick, lang.hitch(this, this._toggle)),
+        on(this.domNode, a11yclick, this._toggle),
+        on(this._closeNode, a11yclick, this._toggle),
         on(this._resultListNode, on.selector("[data-id]", a11yclick), function () {
           var id = domAttr.get(this, "data-id");
-
-          _self._highlightGraphic(_self._findGraphicById(id));
+  
+          wikiHelper.highlightGraphic({
+            id: id,
+            map: self.map,
+            results: self._resultGraphics
+          });
         }),
-        on(this._refreshNode, a11yclick, lang.hitch(this, this._fetchAndUpdate))
+        on(this._refreshNode, a11yclick, this._fetchAndUpdate)
       );
     },
 
@@ -179,7 +149,9 @@ define([
     maxResults: MAX_RESULTS,
 
     _setMaxResultsAttr: function (value) {
-      value = clamp(value, MIN_RESULTS, MAX_RESULTS);
+      value = value > MAX_RESULTS ? MAX_RESULTS :
+              value < MIN_RESULTS ? MIN_RESULTS :
+              value;
 
       this._set("maxResults", value);
     },
@@ -198,7 +170,10 @@ define([
         this._fetchAndUpdate();
       }
       else {
-        this._clearResultGraphics();
+        wikiHelper.clearResultGraphics({
+          map: this.map,
+          results: this._resultGraphics
+        });
         this._closePanel();
       }
 
@@ -226,32 +201,34 @@ define([
       domClass.remove(this._panelNode, CSS.loading);
     },
 
-    _highlightGraphic: function (graphic) {
-      var map        = this.map,
-          infoWindow = map.infoWindow;
-
-      map.centerAt(graphic.geometry).then(function () {
-        infoWindow.setFeatures([graphic]);
-        infoWindow.show(graphic.geometry);
-      });
-    },
-
     _fetchAndUpdate: function () {
-      this._clearResultGraphics();
+      var self = this,
+          map  = this.map;
+      
+      wikiHelper.clearResultGraphics({
+        map: map,
+        results: this._resultGraphics
+      });
+      
       this._showLoadingStatus();
 
-      return wikiAPIHelper.findNearbyItems({
-          center: this.map.extent.getCenter(),
-          maxResults: this.maxResults,
-          searchRadius: this._getRadius()
+      return wikiHelper.findNearbyItems({
+          map: map,
+          maxResults: this.maxResults
         })
         .then(this._updateList)
-        .then(this._addResultGraphics)
+        .then(function(results) {
+          self._resultGraphics = wikiHelper.addResultGraphics({
+            map: map,
+            results: results
+          });
+        })
         .always(this._hideLoadingStatus);
     },
 
     _updateList: function (items) {
-      var fragment = document.createDocumentFragment();
+      var fragment = document.createDocumentFragment(),
+          entry, image, title;
 
       if (items.length === 0) {
         domConstruct.create("li", {
@@ -261,19 +238,19 @@ define([
       }
       else {
         array.forEach(items, function (item) {
-
-          var entry = domConstruct.create("li", {
+  
+          entry = domConstruct.create("li", {
             tabindex: 0,
             "data-id": item.id,
             className: CSS.item
           }, fragment);
-
-          var image = domConstruct.create("span", {
+  
+          image = domConstruct.create("span", {
             title: item.title,
             className: CSS.image
           }, entry);
-
-          var title = domConstruct.create("span", {
+  
+          title = domConstruct.create("span", {
             textContent: item.title
           }, entry);
 
@@ -290,64 +267,6 @@ define([
       domConstruct.place(fragment, this._resultListNode, "only");
 
       return items;
-    },
-
-    _addResultGraphics: function (results) {
-      this._clearResultGraphics();
-
-      array.forEach(results, function (result) {
-        var graphic = this._createGraphic(result);
-
-        this.map.graphics.add(graphic);
-        this._resultGraphics.push(graphic);
-      }, this);
-    },
-
-    _createGraphic: function (result) {
-      var content = "<a target=\"_blank\" href=\"${url}\">" + i18n.moreInfo + "</a>",
-        infoTemplate = new InfoTemplate("${title}", content);
-
-      return new Graphic(result.point, SYMBOL, result, infoTemplate);
-    },
-
-    _clearResultGraphics: function () {
-      array.forEach(this._resultGraphics, function (graphic) {
-        this.map.graphics.remove(graphic);
-      }, this);
-
-      this._resultGraphics.length = 0;
-      if (this.map.infoWindow) {
-        this.map.infoWindow.hide();
-      }
-    },
-
-    _getRadius: function() {
-      var minSearchRadius = MIN_SEARCH_RADIUS_IN_METERS,
-          maxSearchRadius = MAX_SEARCH_RADIUS_IN_METERS,
-          map             = this.map,
-          extent          = map.extent,
-          spatialRef      = map.spatialReference,
-          point1          = new Point(extent.xmin, extent.ymin, spatialRef),
-          point2          = new Point(extent.xmax, extent.ymin, spatialRef),
-          distance        = mathUtils.getLength(point1, point2);
-
-      return Math.floor(
-        clamp(Math.ceil(distance), minSearchRadius, maxSearchRadius)
-      );
-    },
-
-    _findGraphicById: function (id) {
-      var match;
-
-      array.some(this._resultGraphics, function (graphic) {
-        var found = graphic.attributes.id == id;
-        if (found) {
-          match = graphic;
-        }
-        return found;
-      });
-
-      return match;
     }
 
   });
