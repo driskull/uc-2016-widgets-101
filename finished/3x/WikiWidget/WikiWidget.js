@@ -261,7 +261,7 @@ define([
             domClass.add(image, CSS.icon);
           }
 
-        }, this);
+        });
       }
 
       domConstruct.place(fragment, this._resultListNode, "only");
