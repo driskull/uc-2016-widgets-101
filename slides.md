@@ -21,7 +21,7 @@
 - Building a widget
   - 3.x
   - 4.x
-- Tips & Tricks
+- Tips & best practices
 - Resources
 - Q & A
 
@@ -375,9 +375,71 @@ Here to help...
 
 ---
 
-# Tips & tricks
+# Tips & best practices
 
 ![tricks](./images/tricks.gif)
+
+---
+
+# Use a styleguide
+  - helps keep your code organized
+  - defines rules for consistent code
+    - naming conventions
+    - whitespace
+    - common patterns
+    - etc...
+
+---
+
+# Use the source, Luke.
+
+Use GitHub to browse code and learn more about existing projects.
+
+- [dojo](https://github.com/dojo/dojo)
+- [dijit](https://github.com/dojo/dijit)
+- [dojox](https://github.com/dojo/dojox)
+- etc...
+
+---
+
+# Linting
+
+Highlight issues in your code based on predefined rules.
+
+- [JSLint](http://jslint.com/)
+- [JSHint](http://jshint.com/)
+- [ESLint](http://eslint.org/)
+
+---
+
+# Formatting
+
+Format your code based on predefined rules.
+
+  - [ESLint](http://eslint.org/)
+  - [JS Beautifier](http://jsbeautifier.org/)
+
+---
+
+# Task runners
+
+Automate all the things.
+
+- [Grunt](http://gruntjs.com/)
+- [Gulp](http://gulpjs.com/)
+
+---
+
+# Testing
+
+<!-- how do you catch bugs if you have no tests? -->
+<!-- takes time, but it's an investment -->
+Automated testing helps you catch regressions as you move forward.
+
+- [Intern](theintern.github.io)
+- [Jasmine](http://jasmine.github.io/)
+- [QUnit](https://qunitjs.com/)
+- [Karma](https://karma-runner.github.io/0.13/index.html)
 
 ---
 
