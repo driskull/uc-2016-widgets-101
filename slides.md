@@ -465,7 +465,7 @@ Here to help...
 ---
 
 <!-- Presenter: Matt -->
-## More widget sessions
+## Suggested sessions
 
 - Wednesday
 
@@ -476,6 +476,9 @@ Here to help...
   - [Web AppBuilder for ArcGIS: Customizing and Extending](https://uc.schedule.esri.com/#schedule/56fb32e24be5ddcd24001064/56fb32e34be5ddcd24001065)
   - [Web AppBuilder for ArcGIS: Build your First Widget in 15 mins](https://uc.schedule.esri.com/#schedule/56fb2d884be5ddcd240007f1/56fb2d894be5ddcd240007f4)
   - [Extending the Operations Dashboard for ArcGIS](https://uc.schedule.esri.com/#schedule/56fb2ffe4be5ddcd24000d04/56fb2ffe4be5ddcd24000d05)
+
+  - [ArcGIS API 4.0 for JavaScript: Patterns and Best Practices
+](https://uc.schedule.esri.com/#schedule/56fb32d74be5ddcd24001058/56fb32d84be5ddcd24001059)
 
 ---
 
