@@ -1,5 +1,5 @@
 define([
-  "demo-common/wikiHelper",
+  "./support/wikiHelper",
 
   "dijit/_TemplatedMixin",
   "dijit/_WidgetBase",

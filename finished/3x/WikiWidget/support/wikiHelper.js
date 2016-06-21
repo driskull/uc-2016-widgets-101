@@ -12,7 +12,7 @@ define([
 
   "esri/symbols/PictureMarkerSymbol",
 
-  "dojo/i18n!demo-widgets/nls/WikiWidget",
+  "dojo/i18n!../nls/WikiWidget",
 
   "require"
 ],
