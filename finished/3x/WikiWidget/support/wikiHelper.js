@@ -31,7 +31,7 @@ function (
   var MIN_SEARCH_RADIUS_IN_METERS = 10;
   var MAX_SEARCH_RADIUS_IN_METERS = 10000;
   
-  var WIKI_ICON_PATH = require.toUrl("./images/wikipedia_32.png");
+  var WIKI_ICON_PATH = require.toUrl("../images/wikipedia_32.png");
   var ICON_SIZE = 24;
   var SYMBOL = new PictureMarkerSymbol({
     url: WIKI_ICON_PATH,
