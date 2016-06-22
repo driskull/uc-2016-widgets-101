@@ -136,7 +136,20 @@ define([
     //  Private Methods
     //
     //--------------------------------------------------------------------------
+    
+    _openPanel: function () {
+      domClass.add(this._panelNode, CSS.panelOpen);
+    },
 
+    _closePanel: function () {
+      domClass.remove(this._panelNode, CSS.panelOpen);
+    }
+    
+    
+    
+    
+    
+    
   });
 
 });
