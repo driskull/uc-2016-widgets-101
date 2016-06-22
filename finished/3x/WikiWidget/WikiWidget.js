@@ -1,8 +1,9 @@
 define([
   "./support/wikiHelper",
+  
+  "dijit/_WidgetBase",
 
   "dijit/_TemplatedMixin",
-  "dijit/_WidgetBase",
   "dijit/a11yclick",
 
   "dojo/_base/array",
@@ -19,7 +20,8 @@ define([
   "dojo/text!./templates/WikiWidget.html"
 ], function (
   wikiHelper,
-  _TemplatedMixin, _WidgetBase, a11yclick,
+  _WidgetBase,
+  _TemplatedMixin, a11yclick,
   array, lang,
   domAttr, domClass, domConstruct, domStyle, on,
   i18n,
@@ -70,13 +72,6 @@ define([
     //--------------------------------------------------------------------------
 
     constructor: function () {
-      this._fetchAndUpdate = lang.hitch(this, this._fetchAndUpdate);
-      this._updateList = lang.hitch(this, this._updateList);
-      this._showLoadingStatus = lang.hitch(this, this._showLoadingStatus);
-      this._hideLoadingStatus = lang.hitch(this, this._hideLoadingStatus);
-      this._openPanel = lang.hitch(this, this._openPanel);
-      this._toggle = lang.hitch(this, this._toggle);
-
       this._resultGraphics = [];
     },
 
@@ -88,8 +83,8 @@ define([
       domConstruct.place(this._panelNode, this.map.root);
 
       this.own(
-        on(this.domNode, a11yclick, this._toggle),
-        on(this._closeNode, a11yclick, this._toggle),
+        on(this.domNode, a11yclick, lang.hitch(this, this._toggle)),
+        on(this._closeNode, a11yclick, lang.hitch(this, this._toggle)),
         on(this._resultListNode, on.selector("[data-id]", a11yclick), function () {
           var id = domAttr.get(this, "data-id");
   
@@ -99,7 +94,7 @@ define([
             results: self._resultGraphics
           });
         }),
-        on(this._refreshNode, a11yclick, this._fetchAndUpdate)
+        on(this._refreshNode, a11yclick, lang.hitch(this, this._fetchAndUpdate))
       );
     },
 
@@ -216,14 +211,14 @@ define([
           map: map,
           maxResults: this.maxResults
         })
-        .then(this._updateList)
+        .then(lang.hitch(this, this._updateList))
         .then(function(results) {
           self._resultGraphics = wikiHelper.addResultGraphics({
             map: map,
             results: results
           });
         })
-        .always(this._hideLoadingStatus);
+        .always(lang.hitch(this, this._hideLoadingStatus));
     },
 
     _updateList: function (items) {
