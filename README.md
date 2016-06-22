@@ -2,7 +2,7 @@
 
 The ArcGIS API for JavaScript includes widgets that are building blocks for creating the UI for your GIS web apps. Learn how to take an out-of-the-box widget and customize it to your heart's content. Make a widget your own by restyling, theming, adding functionality, or replacing existing logic. We'll cover the programming pattern and new architecture of widgets, and how you can give your widget a face-lift using CSS. We will also discuss best practices and recommended tooling for widget development.
 
-**Short URL: bit.ly/widgets101**
+**Short URL: [bit.ly/widgets101](bit.ly/widgets101)**
 
 ## Slides
 
