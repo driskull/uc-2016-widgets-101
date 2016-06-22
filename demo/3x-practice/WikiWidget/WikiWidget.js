@@ -1,6 +1,6 @@
 define([
   "./support/wikiHelper",
-    
+
   "dijit/_TemplatedMixin",
   "dijit/_WidgetBase",
   "dijit/a11yclick",
@@ -17,7 +17,7 @@ define([
   "dojo/i18n!./nls/WikiWidget",
 
   "dojo/text!./templates/WikiWidget.html"
-    
+
 ], function (
   wikiHelper,
   _TemplatedMixin, _WidgetBase, a11yclick,
@@ -26,11 +26,11 @@ define([
   i18n,
   templateString
 ) {
-    
-    var MIN_RESULTS = 1;
-    var MAX_RESULTS = 10;
-    
-    var CSS = {
+
+  var MIN_RESULTS = 1;
+  var MAX_RESULTS = 10;
+
+  var CSS = {
     // button
     base: "esri-wikipedia",
     active: "esri-wikipedia--active",
@@ -57,7 +57,7 @@ define([
   };
 
   return _WidgetBase.createSubclass([_TemplatedMixin], {
-      
+
     baseClass: CSS.base,
 
     templateString: templateString,
@@ -71,11 +71,37 @@ define([
     //--------------------------------------------------------------------------
 
     constructor: function () {
-        
+      this._fetchAndUpdate = lang.hitch(this, this._fetchAndUpdate);
+      this._updateList = lang.hitch(this, this._updateList);
+      this._showLoadingStatus = lang.hitch(this, this._showLoadingStatus);
+      this._hideLoadingStatus = lang.hitch(this, this._hideLoadingStatus);
+      this._openPanel = lang.hitch(this, this._openPanel);
+      this._toggle = lang.hitch(this, this._toggle);
+
+      this._resultGraphics = [];
     },
 
     postCreate: function () {
-        
+      var self = this;
+
+      this.inherited(arguments);
+
+      domConstruct.place(this._panelNode, this.map.root);
+
+      this.own(
+        on(this.domNode, a11yclick, this._toggle),
+        on(this._closeNode, a11yclick, this._toggle),
+        on(this._resultListNode, on.selector("[data-id]", a11yclick), function () {
+          var id = domAttr.get(this, "data-id");
+  
+          wikiHelper.highlightGraphic({
+            id: id,
+            map: self.map,
+            results: self._resultGraphics
+          });
+        }),
+        on(this._refreshNode, a11yclick, this._fetchAndUpdate)
+      );
     },
 
     //--------------------------------------------------------------------------
@@ -91,7 +117,7 @@ define([
     _active: false,
 
     _resultGraphics: null,
-      
+
     //--------------------------------------------------------------------------
     //
     //  Properties
@@ -125,31 +151,126 @@ define([
 
     _setMaxResultsAttr: function (value) {
       value = value > MAX_RESULTS ? MAX_RESULTS :
-              value < MIN_RESULTS ? MIN_RESULTS :
-              value;
+        value < MIN_RESULTS ? MIN_RESULTS :
+        value;
 
       this._set("maxResults", value);
     },
-      
+
     //--------------------------------------------------------------------------
     //
     //  Private Methods
     //
     //--------------------------------------------------------------------------
-    
+
+    _toggle: function () {
+      this._active = !this._active;
+
+      if (this._active) {
+        this._openPanel();
+        this._fetchAndUpdate();
+      }
+      else {
+        wikiHelper.clearResultGraphics({
+          map: this.map,
+          results: this._resultGraphics
+        });
+        this._closePanel();
+      }
+
+      domClass.toggle(this.domNode, CSS.active, this._active);
+    },
+
     _openPanel: function () {
       domClass.add(this._panelNode, CSS.panelOpen);
     },
 
     _closePanel: function () {
       domClass.remove(this._panelNode, CSS.panelOpen);
+    },
+
+    _fetchAndUpdate: function () {
+      var self = this,
+        map = this.map;
+
+      wikiHelper.clearResultGraphics({
+        map: map,
+        results: this._resultGraphics
+      });
+
+      this._showLoadingStatus();
+
+      return wikiHelper.findNearbyItems({
+          map: map,
+          maxResults: this.maxResults
+        })
+        .then(this._updateList)
+        .then(function (results) {
+          self._resultGraphics = wikiHelper.addResultGraphics({
+            map: map,
+            results: results
+          });
+        })
+        .always(this._hideLoadingStatus);
+    },
+
+    _showLoadingStatus: function () {
+      domClass.add(this._panelNode, CSS.loading);
+
+      domConstruct.create("li", {
+        className: CSS.message,
+        innerHTML: i18n.fetchingResults
+      }, this._resultListNode, "only");
+    },
+
+    _hideLoadingStatus: function () {
+      domClass.remove(this._panelNode, CSS.loading);
+    },
+
+    _updateList: function (items) {
+      var fragment = document.createDocumentFragment(),
+        entry, image, title;
+
+      if (items.length === 0) {
+        domConstruct.create("li", {
+          className: CSS.message,
+          textContent: i18n.noResults
+        }, fragment);
+      }
+      else {
+        array.forEach(items, function (item) {
+
+          entry = domConstruct.create("li", {
+            tabindex: 0,
+            "data-id": item.id,
+            className: CSS.item
+          }, fragment);
+
+          image = domConstruct.create("span", {
+            title: item.title,
+            className: CSS.image
+          }, entry);
+
+          title = domConstruct.create("span", {
+            textContent: item.title
+          }, entry);
+
+          if (item.image) {
+            domStyle.set(image, "background-image", "url(" + item.image + ")");
+          }
+          else {
+            domClass.add(image, CSS.icon);
+          }
+
+        });
+      }
+
+      domConstruct.place(fragment, this._resultListNode, "only");
+
+      return items;
     }
-    
-    
-    
-    
-    
-    
+
+
   });
 
 });
