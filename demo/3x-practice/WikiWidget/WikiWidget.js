@@ -55,13 +55,76 @@ define([
 
   return _WidgetBase.createSubclass([_TemplatedMixin], {
       
+    baseClass: CSS.base,
+
     templateString: templateString,
 
-    // widget magic here! °˖✧◝(⁰▿⁰)◜✧˖°
-    
-    constructor: function(){
-      console.log("hello world!");
-    }
+    declaredClass: "esri.dijit.WikiWidget",
+
+    //--------------------------------------------------------------------------
+    //
+    //  Lifecycle
+    //
+    //--------------------------------------------------------------------------
+
+    constructor: function () {
+        
+    },
+
+    postCreate: function () {
+        
+    },
+
+    //--------------------------------------------------------------------------
+    //
+    //  Variables
+    //
+    //--------------------------------------------------------------------------
+
+    //--------------------------------------------------------------------------
+    //
+    //  Properties
+    //
+    //--------------------------------------------------------------------------
+
+    //----------------------------------
+    //  active
+    //----------------------------------
+
+    /**
+     * @readonly
+     */
+    active: null,
+
+    _getActiveAttr: function () {
+      return this._active;
+    },
+
+    //----------------------------------
+    //  map
+    //----------------------------------
+
+    map: null,
+
+    //----------------------------------
+    //  maxResults
+    //----------------------------------
+
+    maxResults: MAX_RESULTS,
+
+    _setMaxResultsAttr: function (value) {
+      value = value > MAX_RESULTS ? MAX_RESULTS :
+              value < MIN_RESULTS ? MIN_RESULTS :
+              value;
+
+      this._set("maxResults", value);
+    },
+      
+    //--------------------------------------------------------------------------
+    //
+    //  Private Methods
+    //
+    //--------------------------------------------------------------------------
 
   });
 

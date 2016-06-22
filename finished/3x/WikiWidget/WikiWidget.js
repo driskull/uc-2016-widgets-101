@@ -55,7 +55,7 @@ define([
     footer: "esri-wikipedia__footer"
   };
 
-  var WikiWidget = _WidgetBase.createSubclass([_TemplatedMixin], {
+  return _WidgetBase.createSubclass([_TemplatedMixin], {
 
     baseClass: CSS.base,
 
@@ -270,7 +270,5 @@ define([
     }
 
   });
-
-  return WikiWidget;
 
 });
