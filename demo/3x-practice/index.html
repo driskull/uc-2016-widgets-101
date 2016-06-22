@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+
+  <link rel="stylesheet" href="//js.arcgis.com/3.17/esri/themes/calcite/esri/esri.css">
+  
+  <link rel="stylesheet" href="WikiWidget/css/WikiWidget.css">
+  
+  <link href="https://file.myfontastic.com/n6vo44Re5QaWo8oCKShBs7/icons.css" rel="stylesheet">
+    
+  <style>
+    html,
+    body,
+    #map {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+      color:#fff;
+      background-color: #000;
+    }
+    
+    .esri-wikipedia {
+      position: absolute;
+      top: 92px;
+      left: 15px;
+      z-index: 2;
+    }
+    
+  </style>
+
+  <script type="text/javascript">
+    var packagePath = location.pathname.substring(0, location.pathname.lastIndexOf('/'));
+
+    var dojoConfig = {
+      // The locationPath logic below may look confusing but all its doing is 
+      // enabling us to load the api from a CDN and load local modules from the correct location.
+      packages: [{
+        name: "widgets",
+        location: packagePath + '/WikiWidget'
+      }]
+    };
+  </script>
+
+  <script src="//js.arcgis.com/3.17"></script>
+  <script>
+    var map, wikiWidget;
+
+    require([
+      "esri/map",
+      "widgets/WikiWidget",
+      "dojo/domReady!"
+    ], function (
+      Map, WikiWidget
+    ) {
+
+      map = new Map("map", {
+        basemap: "dark-gray",
+        zoom: 14,
+        center: [-117.1618, 32.7066]
+      });
+      
+      wikiWidget = new WikiWidget({
+        map: map
+      }, "WikiWidget");
+      wikiWidget.startup();
+
+    });
+  </script>
+
+</head>
+
+<body class="calcite">
+  <div id="WikiWidget"></div>
+  <div id="map" class="map"></div>
+</body>
+
+</html>
