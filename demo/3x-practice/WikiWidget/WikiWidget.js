@@ -27,6 +27,9 @@ define([
   templateString
 ) {
     
+    var MIN_RESULTS = 1;
+    var MAX_RESULTS = 10;
+    
     var CSS = {
     // button
     base: "esri-wikipedia",
@@ -81,6 +84,14 @@ define([
     //
     //--------------------------------------------------------------------------
 
+    _css: CSS,
+
+    _i18n: i18n,
+
+    _active: false,
+
+    _resultGraphics: null,
+      
     //--------------------------------------------------------------------------
     //
     //  Properties
