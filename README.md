@@ -6,14 +6,14 @@ The ArcGIS API for JavaScript includes widgets that are building blocks for crea
 
 ## Slides
 
-- [Presentation](http://driskull.github.io/uc-2016-widgets-101/)
+[View presentation](http://driskull.github.io/uc-2016-widgets-101/)
 
-## Completed Widget
+## Completed widgets
 
 - [3.X](http://driskull.github.io/uc-2016-widgets-101/finished/3x/)
 - [4.X](http://driskull.github.io/uc-2016-widgets-101/finished/4x/)
 
-## Steps
+## Step by step guides
 
 - [3.X](https://github.com/driskull/uc-2016-widgets-101/blob/gh-pages/steps/3x.md)
 - [4.X](https://github.com/driskull/uc-2016-widgets-101/blob/gh-pages/steps/4x.md)
