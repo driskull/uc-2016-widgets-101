@@ -25,7 +25,7 @@
 - Resources
 - Q & A
 
-Source: bit.ly/widgets101
+**Short URL: [bit.ly/widgets101](bit.ly/widgets101)**
 
 ---
 
@@ -39,8 +39,10 @@ Source: bit.ly/widgets101
 - Why?
   - Reusable
   - Interchangeable
+  - Modular
 - How?
  - Different frameworks are available
+ - Focussing on Dijit
 
 ---
 
@@ -50,6 +52,17 @@ Source: bit.ly/widgets101
 - AMD support
 - Class-based inheritance
 - Internationalization
+
+![Dojo Toolkit!](images/dojo-toolkit.png)
+
+---
+
+# Dojo Dijit
+
+- Dojo’s UI Library
+- Separate namespace (dijit)
+- Requires Dojo Core and Dojo Base
+- Themes
 
 ![Dojo Toolkit!](images/dojo-toolkit.png)
 
@@ -564,7 +577,7 @@ Automated testing helps you catch regressions as you move forward.
 
 # Get The Code
 
-## bit.ly/widgets101
+## [bit.ly/widgets101](bit.ly/widgets101)
 
 ---
 
