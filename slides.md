@@ -25,6 +25,8 @@
 - Resources
 - Q & A
 
+Source: bit.ly/widgets101
+
 ---
 
 # Widgets
