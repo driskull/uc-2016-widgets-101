@@ -7,6 +7,10 @@
 
   <link rel="stylesheet" href="//js.arcgis.com/3.17/esri/themes/calcite/esri/esri.css">
     
+  <link rel="stylesheet" href="WikiWidget/css/WikiWidget.css">
+    
+    <link href="https://file.myfontastic.com/n6vo44Re5QaWo8oCKShBs7/icons.css" rel="stylesheet">
+    
   <style>
     html,
     body,
@@ -15,12 +19,25 @@
       margin: 0;
       height: 100%;
     }
+    .esri-wikipedia {
+      position: absolute;
+      top: 92px;
+      left: 15px;
+      z-index: 2;
+    }
   </style>
 
   <script type="text/javascript">
     var packagePath = location.pathname.substring(0, location.pathname.lastIndexOf('/'));
 
-    var dojoConfig = {};
+    var dojoConfig = {
+      // The locationPath logic below may look confusing but all its doing is 
+      // enabling us to load the api from a CDN and load local modules from the correct location.
+      packages: [{
+        name: "widgets",
+        location: packagePath + '/WikiWidget'
+      }]
+    };
   </script>
 
   <script src="//js.arcgis.com/3.17"></script>
@@ -29,9 +46,13 @@
 
     require([
       "esri/map",
+    
+      "widgets/WikiWidget",
+        
       "dojo/domReady!"
     ], function (
-      Map
+      Map,
+      WikiWidget
     ) {
 
       map = new Map("map", {
@@ -39,6 +60,11 @@
         zoom: 14,
         center: [-117.1618, 32.7066]
       });
+        
+      var wikiWidget = new WikiWidget({
+          map: map
+        }, "WikiWidget");
+        wikiWidget.startup();
 
     });
   </script>
@@ -46,6 +72,7 @@
 </head>
 
 <body class="calcite">
+  <div id="WikiWidget"></div>
   <div id="map" class="map"></div>
 </body>
 

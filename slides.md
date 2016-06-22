@@ -562,6 +562,12 @@ Automated testing helps you catch regressions as you move forward.
 
 ---
 
+# Get The Code
+
+## bit.ly/widgets101
+
+---
+
 # Q & A
 
 Questions?
