@@ -25,7 +25,7 @@
 - Resources
 - Q & A
 
-**Short URL: [bit.ly/widgets101](bit.ly/widgets101)**
+**Short URL: [bit.ly/widgets101](http://bit.ly/widgets101)**
 
 ---
 
@@ -577,7 +577,7 @@ Automated testing helps you catch regressions as you move forward.
 
 # Get The Code
 
-## [bit.ly/widgets101](bit.ly/widgets101)
+## [bit.ly/widgets101](http://bit.ly/widgets101)
 
 ---
 
