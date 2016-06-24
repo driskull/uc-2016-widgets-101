@@ -112,7 +112,7 @@
 
 # `dijit/_WidgetBase`
 
-what you get
+What you get
 
 - Lifecycle
   - `constructor`
@@ -313,12 +313,13 @@ and avoid inline styles
 # Accessibility (a11y)
 
 - Enable your application to be used by everyone
-- Use semantic markup
-- ARIA roles
 - Consider other input devices besides the mouse
   - Keyboard
   - Touch
   - Screen reader
+- Use semantic markup
+- ARIA roles
+- `dijit/a11yclick`
 
 ---
 
@@ -351,6 +352,23 @@ Here to help...
 - `dojo/dom-class`
 - `dojo/dom-construct`
 - `dojo/dom-style` (used sparingly)
+
+---
+
+# DOM manipulation
+
+Here to help...
+
+```js
+// without `dojo/dom-class`
+document.getElementById("container-id")
+        .classList.add("round-borders");
+```
+
+```js
+// with `dojo/dom-class`
+domClass.add("container-id", "round-borders");
+```
 
 ---
 
@@ -416,7 +434,7 @@ Here to help...
 # Benefits
 
 - Reusable
-- Testable core
+- Testable
   - Logic without UI concerns
 - Separates concerns
 - Framework compatibility
@@ -436,6 +454,8 @@ Here to help...
 
 # Framework integration
 
+Use ViewModels to create custom UIs in the framework of your choice
+
 - [Angular 2](https://github.com/odoe/esrijs4-vm-angular2) – [demo](http://odoe.github.io/esrijs4-vm-angular2/)
 - [React](https://github.com/odoe/esrijs4-vm-react) – [demo](http://odoe.github.io/esrijs4-vm-react/)
 - [Elm](https://github.com/odoe/esrijs4-vm-elm) – [demo](http://odoe.github.io/esrijs4-vm-elm/dist/)
@@ -443,9 +463,15 @@ Here to help...
 
 ---
 
+# WikiWidget + React?
+
+[Demo](./extras/4x/integration)
+
+---
+
 # Tips & best practices
 
-![tricks](./images/best-practices.gif)
+![best-practices](./images/best-practices.gif)
 
 ---
 
