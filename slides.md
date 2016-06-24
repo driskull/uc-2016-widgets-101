@@ -621,10 +621,6 @@ Questions?
 
 ---
 
-![Thanks](./images/thanks.gif)
-
----
-
 # Bonus: Haiku
 
 <!-- work in progress -->
@@ -634,6 +630,10 @@ user conference—
 attended widget session
 satisfaction now
 ```
+
+---
+
+![Thanks](./images/thanks.gif)
 
 ---
 
