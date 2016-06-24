@@ -621,14 +621,19 @@ Questions?
 
 ---
 
-# Widget Haiku
+![Thanks](./images/thanks.gif)
+
+---
+
+# Bonus: Haiku
 
 <!-- work in progress -->
-> We created them...
-> easily with 3x and 4x
-> now go build widgets
 
-![Thanks](./images/thanks.gif)
+```
+We created them...
+easily with 3x and 4x
+now go build widgets
+```
 
 ---
 
