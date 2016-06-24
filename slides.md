@@ -539,6 +539,37 @@ Automated testing helps you catch regressions as you move forward.
 
 ---
 
+# Calcite dijit theme (3.x)
+
+[![calcite-theme](./images/calcite-theme.png)](./extras/3x/calcite/)
+
+---
+
+# Using calcite
+
+```html
+<link rel="stylesheet" href="<jsapi>/esri/themes/calcite/dijit/calcite.css">
+<link rel="stylesheet" href="<jsapi>/esri/themes/calcite/esri/esri.css">
+...
+<body class="calcite">
+```
+
+---
+
+# Calcite supported widgets
+
+|||||
+|:-:|-|-|:-:|
+| BasemapGallery ||| LocateButton |
+| BasemapToggle ||| Measurement |
+| Bookmarks ||| OverviewMap |
+| Directions ||| Popup |
+| HomeButton ||| Print |
+| LayerSwipe ||| ScaleBar |
+| Legend ||| Search |
+
+---
+
 <!-- Presenter: Matt -->
 ## Suggested sessions
 

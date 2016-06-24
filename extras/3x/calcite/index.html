@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no" />
+  <title>Calcite dijit theme</title>
+
+  <!-- step 1: link calcite stylesheets-->
+
+  <!-- JS API widget stylesheet-->
+  <link rel="stylesheet" href="https://js.arcgis.com/3.17/esri/themes/calcite/dijit/calcite.css">
+
+  <!-- standard dijit stylesheet (e.g., dijit/form/Button) -->
+  <!-- not used in this sample -->
+  <link rel="stylesheet" href="https://js.arcgis.com/3.17/esri/themes/calcite/esri/esri.css">
+
+  <style>
+    html,
+    body,
+    #map {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    #search {
+      display: block;
+      position: absolute;
+      z-index: 2;
+      top: 20px;
+      left: 74px;
+    }
+  </style>
+  <script src="https://js.arcgis.com/3.17/"></script>
+  <script>
+    require([
+      "esri/map",
+      "esri/dijit/Search",
+      "dojo/domReady!"
+    ], function (Map, Search) {
+      var map = new Map("map", {
+        basemap: "dark-gray",
+        center: [-117.1618, 32.7066],
+        zoom: 14
+      });
+
+      var search = new Search({
+        map: map
+      }, "search");
+      search.startup();
+    });
+  </script>
+</head>
+
+<!-- step 2: apply the calcite class to the root of your application -->
+<body class="calcite">
+  <div id="search"></div>
+  <div id="map"></div>
+</body>
+
+</html>
