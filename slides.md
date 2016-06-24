@@ -16,6 +16,8 @@
 
 # Agenda
 
+**Short URL: [bit.ly/widgets101](http://bit.ly/widgets101)**
+
 - About widgets
 - Widget components
 - Building a widget
@@ -24,8 +26,6 @@
 - Tips & best practices
 - Resources
 - Q & A
-
-**Short URL: [bit.ly/widgets101](http://bit.ly/widgets101)**
 
 ---
 
@@ -334,8 +334,14 @@ Here to help...
 
 ---
 
+# That's all for 3.x
+
+![Done with 3.x!](./images/done-with-3.x.gif)
+
+---
+
 <!-- Presenter: JC -->
-# 4.x
+# 4.x Widgets
 
 - Widget Pattern
   - View – the face
@@ -612,6 +618,17 @@ Automated testing helps you catch regressions as you move forward.
 # Q & A
 
 Questions?
+
+---
+
+# Widget Haiku
+
+<!-- work in progress -->
+We created them...
+easily with 3x and 4x
+now go build widgets
+
+![Thanks](./images/thanks.gif)
 
 ---
 
