@@ -127,27 +127,67 @@ what you get
 
 ---
 
+# `constructor`
+
+* Called immediately when widget is created
+* Can be used for initialization
+
+---
+
+# `postMixInProperties`
+
+* Called after properties have been mixed into the instance
+* Can be used to alter properties after being mixed in, but before rendering
+
+---
+
+# `buildRendering`
+
+* Widget template is parsed and its DOM is available
+* Not attached to the DOM tree
+
+---
+
+# `postCreate`
+
+* Most widget DOM nodes are ready at this point
+* Widget not attached to the DOM yet
+* Most common point for customization
+
+---
+
+# `startup`
+
+* Called manually or by `dojo/parser`, initializes all children
+* Recommended point for doing size calculations
+* Must always call when creating widgets programmatically
+
+---
+
+# `destroy`
+
+* Used for teardown logic
+* By default, destroys top-level support widgets
+* Called manually to trigger widget disposal
+
+---
+
 # Simple widget example
 
 ```js
-/* ./MyWidget.js */
-define([
-  "dijit/_WidgetBase",
-  // ...
-], 
-function(
-  _WidgetBase,
-  // ...
-) {
+ var SimpleWidget = _WidgetBase.createSubclass({
 
-  return  _WidgetBase.createSubclass({
+   constructor:         function () { },
+   postMixInProperties: function () { this.inherited(arguments) },
+   buildRendering:      function () { this.inherited(arguments) },
+   postCreate:          function () { this.inherited(arguments) },
+   startup:             function () { this.inherited(arguments) },
+   destroy:             function () { this.inherited(arguments) }
 
-    // widget magic here! °˖✧◝(⁰▿⁰)◜✧˖°
-
-  });
-
-});
+ });
 ```
+
+[Learn more about dijit/_WidgetBase](https://dojotoolkit.org/reference-guide/1.10/dijit/_WidgetBase.html)
 
 ---
 
