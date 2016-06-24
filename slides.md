@@ -416,8 +416,8 @@ Here to help...
 # Benefits
 
 - Reusable
-- Testable core widget
-  - logic without UI concerns
+- Testable core
+  - Logic without UI concerns
 - Separates concerns
 - Framework compatibility
 
