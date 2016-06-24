@@ -241,15 +241,21 @@ function (
 
 # Example: after
 
+## MyWidget.html
+
 ```html
-<!-- ./templates/MyWidget.html -->
 <div class="my-widget">
   <label class="my-widget__text">°˖✧◝(⁰▿⁰)◜✧˖°</label>
 </div>
 ```
 
+---
+
+# Example: after
+
+## MyWidget.css
+
 ```css
-/* ./css/MyWidget.css */
 .my-widget {
   background-color: chartreuse
 }
@@ -258,8 +264,13 @@ function (
 }
 ```
 
+---
+
+# Example: after
+
+## MyWidget.js
+
 ```js
-/* ./MyWidget.js */
 define([
   "dijit/_WidgetBase",
   "dijit/_TemplatedMixin",
