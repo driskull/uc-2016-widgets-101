@@ -42,7 +42,7 @@
   - Modular
 - How?
  - Different frameworks are available
- - Focussing on Dijit
+ - Focusing on Dijit
 
 ---
 
@@ -337,20 +337,9 @@ Here to help...
 <!-- Presenter: JC -->
 # 4.x
 
-- Widget Architecture
+- Widget Pattern
   - View – the face
   - ViewModel – the brain
-- Reusable/Testable core widget logic sans UI concerns
-- Framework compatibility
-- Separates concerns
-
----
-
-# Comparison
-
-| 3.x                                     |     |     |     |     | 4.x                                     |
-|:---------------------------------------:|-----|-----|-----|-----|:---------------------------------------:|
-| ![3x widget way](images/widgets-3x.png) |     |     |     |     | ![4x widget way](images/widgets-4x.png) |
 
 ---
 
@@ -369,13 +358,23 @@ Here to help...
 
 ---
 
-# Widget SDK
+# Benefits
 
-[Example: BasemapToggle](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-BasemapToggle.html)
+- Reusable
+- Testable core widget
+  - logic without UI concerns
+- Separates concerns
+- Framework compatibility
 
 ---
 
-# ViewModel + frameworks
+# Building WikiWidget the 4x way
+
+[Steps](https://github.com/driskull/uc-2016-widgets-101/blob/gh-pages/steps/4x.md)
+
+---
+
+# ViewModel + framework integration
 
 - [Angular 2](https://github.com/odoe/esrijs4-vm-angular2) – [demo](http://odoe.github.io/esrijs4-vm-angular2/)
 - [React](https://github.com/odoe/esrijs4-vm-react) – [demo](http://odoe.github.io/esrijs4-vm-react/)
@@ -384,9 +383,11 @@ Here to help...
 
 ---
 
-# Building WikiWidget the 4x way
+# ViewModel doc
 
-[Steps](https://github.com/driskull/uc-2016-widgets-101/blob/gh-pages/steps/4x.md)
+*
+
+
 
 ---
 
@@ -472,6 +473,7 @@ Automated testing helps you catch regressions as you move forward.
   - [Sass](http://sass-lang.com)
   - [Stylus](http://stylus-lang.com/)
   - [Less](http://lesscss.org/)
+- Demo
 
 ---
 
@@ -537,10 +539,6 @@ Automated testing helps you catch regressions as you move forward.
 
 ---
 
-![I choose you!](images/i-choose-you.jpg)
-
----
-
 <!-- Presenter: Matt -->
 ## Suggested sessions
 
@@ -561,7 +559,6 @@ Automated testing helps you catch regressions as you move forward.
 
 ## Additional resources
 
-- [This presentation (repo)](https://github.com/driskull/uc-2016-widgets-101)
 - [ArcGIS API for JavaScript 4.0 SDK](https://developers.arcgis.com/javascript/)
 - [Styling (4.0)](https://developers.arcgis.com/javascript/latest/guide/styling/index.html)
 
