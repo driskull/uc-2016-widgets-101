@@ -671,6 +671,8 @@ Use GitHub to browse code and learn more about existing projects.
 
 Questions?
 
+![Rate us](./images/computer-gif.gif)
+
 ---
 
 # Bonus: Haiku
