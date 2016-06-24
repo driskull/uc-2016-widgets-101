@@ -57,7 +57,7 @@
 
 ---
 
-# Dojo Dijit
+# Dijit
 
 - Dojo’s UI Library
 - Separate namespace (dijit)
@@ -148,8 +148,6 @@ function(
 
 });
 ```
-
-[Simple widget](./demo/preamble/dijit-lifecycle.html)
 
 ---
 
@@ -374,12 +372,6 @@ Here to help...
 
 ---
 
-# Building WikiWidget the 4x way
-
-[Steps](https://github.com/driskull/uc-2016-widgets-101/blob/gh-pages/steps/4x.md)
-
----
-
 # ViewModel + framework integration
 
 - [Angular 2](https://github.com/odoe/esrijs4-vm-angular2) – [demo](http://odoe.github.io/esrijs4-vm-angular2/)
@@ -393,7 +385,16 @@ Here to help...
 
 *
 
+---
 
+# Let's update WikiWidget
+
+## Key differences
+
+* Adjust to 4.x API
+* Extract non-UI code to a ViewModel
+
+[Steps](https://github.com/driskull/uc-2016-widgets-101/blob/gh-pages/steps/4x.md)
 
 ---
 
@@ -410,17 +411,6 @@ Here to help...
     - whitespace
     - common patterns
     - etc...
-
----
-
-# Use the source, Luke.
-
-Use GitHub to browse code and learn more about existing projects.
-
-- [dojo](https://github.com/dojo/dojo)
-- [dijit](https://github.com/dojo/dijit)
-- [dojox](https://github.com/dojo/dojox)
-- etc...
 
 ---
 
@@ -462,6 +452,17 @@ Automated testing helps you catch regressions as you move forward.
 - [Jasmine](http://jasmine.github.io/)
 - [QUnit](https://qunitjs.com/)
 - [Karma](https://karma-runner.github.io/0.13/index.html)
+
+---
+
+# Use the source, Luke.
+
+Use GitHub to browse code and learn more about existing projects.
+
+- [dojo](https://github.com/dojo/dojo)
+- [dijit](https://github.com/dojo/dijit)
+- [dojox](https://github.com/dojo/dojox)
+- etc...
 
 ---
 
