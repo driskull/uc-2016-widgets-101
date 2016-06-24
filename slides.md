@@ -673,7 +673,7 @@ Use GitHub to browse code and learn more about existing projects
 
 Questions?
 
-![questions](./images/computer-gif.gif)
+![questions](./images/hands.gif)
 
 ---
 
