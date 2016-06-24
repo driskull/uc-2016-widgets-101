@@ -61,8 +61,8 @@
 
 - Dojo’s UI Library
 - Separate namespace (dijit)
-- Requires Dojo Core and Dojo Base
-- Themes
+- Built on top of Dojo
+- Has themes
 
 ![Dojo Toolkit!](images/dojo-toolkit.png)
 
