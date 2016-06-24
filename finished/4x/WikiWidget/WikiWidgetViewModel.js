@@ -1,5 +1,5 @@
 define([
-  "demo/common/wikiAPIHelper",
+  "./support/wikiHelper",
 
   "dojo/_base/lang",
 
@@ -19,7 +19,7 @@ define([
   "require"
 ],
 function(
-  wikiAPIHelper,
+  wikiHelper,
   lang,
   Accessor,
   Point, mathUtils, Graphic,
@@ -55,16 +55,18 @@ function(
   }
 
   var WikiWidgetViewModel = Accessor.createSubclass({
-
-    classMetadata: {
-      properties: {
-        results: {
-          readOnly: true
-        },
-        state: {
-          readOnly: true
-        }
-      }
+  
+    properties: {
+      active: {},
+      maxResults: {},
+      results: {
+        readOnly: true
+      },
+      state: {
+        readOnly: true,
+        dependsOn: ["view.ready"]
+      },
+      view: {}
     },
 
     declaredClass: "esri.widgets.WikiWidgetViewModel",
@@ -77,13 +79,12 @@ function(
 
     constructor: function() {
       this._fetchAndUpdate = this._fetchAndUpdate.bind(this);
-
-      this._resultGraphics = [];
     },
 
     getDefaults: function() {
       return lang.mixin(this.inherited(arguments), {
-        maxResults: MAX_RESULTS
+        maxResults: MAX_RESULTS,
+        results: []
       });
     },
 
@@ -92,10 +93,8 @@ function(
     //  Variables
     //
     //--------------------------------------------------------------------------
-
+    
     _active: false,
-
-    _resultGraphics: null,
 
     //--------------------------------------------------------------------------
     //
@@ -157,12 +156,19 @@ function(
     },
 
     clear: function() {
+      wikiHelper.clearResultGraphics({
+        view: this.view,
+        results: this.results
+      });
       this._set("results", []);
-      return this._clearResultGraphics();
     },
 
     highlight: function(id) {
-      this._highlightGraphic(this._findGraphicById(id));
+      wikiHelper.highlightGraphic({
+        id: id,
+        view: this.view,
+        results: this.results
+      });
     },
 
     //--------------------------------------------------------------------------
@@ -171,94 +177,25 @@ function(
     //
     //--------------------------------------------------------------------------
 
-    _highlightGraphic: function(graphic) {
-      var view = this.view;
-
-      view.goTo(graphic.geometry).then(function () {
-        view.popup.open({
-          features: [graphic],
-          updateLocationEnabled: true
-        });
-      });
-    },
-
     _fetchAndUpdate: function() {
-      this._clearResultGraphics();
+      wikiHelper.clearResultGraphics({
+        view: this.view,
+        results: this.results
+      });
 
-      return wikiAPIHelper.findNearbyItems({
-          center: this.view.extent.center,
-          maxResults: this.maxResults,
-          searchRadius: this._getRadius()
+      return wikiHelper.findNearbyItems({
+          view: this.view,
+          maxResults: this.maxResults
         })
         .then(function(results) {
-          this._addResultGraphics(results);
+          // FIXME
+          results = wikiHelper.addResultGraphics({
+            view: this.view,
+            results: results
+          });
           this._set("results", results);
           return results;
         }.bind(this));
-    },
-
-    _addResultGraphics: function(results) {
-      this._clearResultGraphics();
-
-      results.forEach(function(result) {
-        var graphic = this._createGraphic(result);
-
-        this.view.graphics.add(graphic);
-        this._resultGraphics.push(graphic);
-      }, this);
-    },
-
-    _createGraphic: function(result) {
-
-      // remove Point from attributes – PopupRenderer bug (cloning Accessor instance breaks)
-      var pointLessAttributes = lang.mixin({}, result);
-      delete pointLessAttributes.point;
-
-      return new Graphic({
-        geometry: result.point,
-        symbol: SYMBOL,
-        attributes: pointLessAttributes,
-        popupTemplate: new PopupTemplate({
-          title: "{title}",
-          content: "<a target=\"_blank\" href=\"{url}\">" + i18n.moreInfo + "</a>"
-        })
-      });
-    },
-
-    _clearResultGraphics: function() {
-      this.view.graphics.removeMany(this._resultGraphics);
-
-      this._resultGraphics.length = 0;
-      this.view.popup.visible = false;
-    },
-
-    _getRadius: function() {
-      var minSearchRadius = MIN_SEARCH_RADIUS_IN_METERS,
-          maxSearchRadius = MAX_SEARCH_RADIUS_IN_METERS,
-          view             = this.view,
-          extent          = view.extent,
-          spatialRef      = view.spatialReference,
-          point1          = new Point(extent.xmin, extent.ymin, spatialRef),
-          point2          = new Point(extent.xmax, extent.ymin, spatialRef),
-          distance        = mathUtils.getLength(point1, point2);
-
-      return Math.floor(
-        clamp(Math.ceil(distance), minSearchRadius, maxSearchRadius)
-      );
-    },
-
-    _findGraphicById: function(id) {
-      var match;
-
-      this._resultGraphics.some(function(graphic) {
-        var found = graphic.attributes.id == id;
-        if (found) {
-          match = graphic;
-        }
-        return found;
-      });
-
-      return match;
     }
 
   });

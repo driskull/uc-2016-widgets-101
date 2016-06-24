@@ -4,7 +4,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
-  <title></title>
+
   <link rel="stylesheet" href="//js.arcgis.com/4.0/esri/css/main.css">
   <link rel="stylesheet" href="WikiWidget/css/WikiWidget.css">
   <link href="https://file.myfontastic.com/n6vo44Re5QaWo8oCKShBs7/icons.css" rel="stylesheet">
@@ -15,26 +15,29 @@
       padding: 0;
       margin: 0;
       height: 100%;
+      width: 100%;
+      color:#fff;
+      background-color: #000;
     }
-    body{
-      font-family: "Avenir Next W01", "Avenir Next", "Avenir", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-      font-size: 12px;
-      line-height: 1.66667;
+
+    .esri-wikipedia {
+      position: absolute;
+      top: 92px;
+      left: 15px;
+      z-index: 2;
     }
   </style>
 
   <script type="text/javascript">
-    var demoPath = location.pathname;
-    var packagePath = demoPath.substring(0, demoPath.lastIndexOf('/'));
-    var parentPath = packagePath.substring(0, packagePath.lastIndexOf('/'));
+    var packagePath = location.pathname.substring(0, location.pathname.lastIndexOf('/'));
 
     var dojoConfig = {
       async: true,
-      // The locationPath logic below may look confusing but all its doing is 
+      // The locationPath logic below may look confusing but all its doing is
       // enabling us to load the api from a CDN and load local modules from the correct location.
       packages: [{
-        name: "demo",
-        location: parentPath + '/4x/WikiWidget/'
+        name: "widgets",
+        location: packagePath + "/WikiWidget"
       }]
     };
   </script>
@@ -46,13 +49,14 @@
     require([
       "esri/Map",
       "esri/views/MapView",
-      "demo/WikiWidget",
+      "widgets/WikiWidget",
       "dojo/domReady!"
     ], function (
       Map,
       MapView,
       WikiWidget
     ) {
+
       map = new Map({
         basemap: "dark-gray"
       });
@@ -61,21 +65,15 @@
         container: "view",
         map: map,
         zoom: 14,
-        center: [-117.1618, 32.7066],
-        padding: {
-          right: 400
-        }
+        center: [-117.1618, 32.7066]
       });
 
       wikiWidget = new WikiWidget({
         viewModel: {
           view: view
         }
-      });
-
-      view.then(function () {
-        view.ui.add(wikiWidget, "top-left");
-      });
+      }, "WikiWidget");
+      wikiWidget.startup();
 
     });
   </script>
@@ -83,7 +81,8 @@
 </head>
 
 <body>
-  <div id="view" class="view"></div>
+  <div id="WikiWidget"></div>
+  <div id="view"></div>
 </body>
 
 </html>

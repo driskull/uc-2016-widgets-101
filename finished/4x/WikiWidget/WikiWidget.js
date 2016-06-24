@@ -4,8 +4,6 @@ define([
   "dijit/_TemplatedMixin",
   "dijit/a11yclick",
 
-  "dojo/_base/array",
-
   "dojo/dom-attr",
   "dojo/dom-class",
   "dojo/dom-construct",
@@ -13,6 +11,7 @@ define([
   "dojo/on",
 
   "esri/widgets/Widget",
+  "esri/widgets/support/viewModelWiring",
 
   "dojo/i18n!./nls/WikiWidget",
 
@@ -20,9 +19,8 @@ define([
 ], function (
   WikiWidgetViewModel,
   _TemplatedMixin, a11yclick,
-  array,
   domAttr, domClass, domConstruct, domStyle, on,
-  Widget,
+  Widget, viewModelWiring,
   i18n,
   templateString
 ) {
@@ -55,12 +53,10 @@ define([
   };
 
   var WikiWidget = Widget.createSubclass([_TemplatedMixin], {
-
-    classMetadata: {
-      properties: {
-        viewModel: {
-          type: WikiWidgetViewModel
-        }
+  
+    properties: {
+      viewModel: {
+        type: WikiWidgetViewModel
       }
     },
 
@@ -119,8 +115,6 @@ define([
     //  Properties
     //
     //--------------------------------------------------------------------------
-
-    // TODO: wire up w/ viewmodel?
 
     //----------------------------------
     //  active
@@ -203,8 +197,11 @@ define([
         }, fragment);
       }
       else {
-        array.forEach(items, function (item) {
-
+        items.forEach(function (item) {
+          // FIXME item should be data and not Graphic instance
+          item = item.attributes;
+          
+          
           var entry = domConstruct.create("li", {
             tabindex: 0,
             "data-id": item.id,
