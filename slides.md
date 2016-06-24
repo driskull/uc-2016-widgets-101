@@ -310,6 +310,10 @@ and avoid inline styles
 
 ---
 
+
+
+---
+
 # Accessibility (a11y)
 
 - Enable your application to be used by everyone
@@ -665,13 +669,15 @@ Use GitHub to browse code and learn more about existing projects
 
 ## [bit.ly/widgets101](http://bit.ly/widgets101)
 
+![code](./images/computer-gif.gif)
+
 ---
 
 # Q & A
 
 Questions?
 
-![Rate us](./images/computer-gif.gif)
+![questions](./images/computer-gif.gif)
 
 ---
 
