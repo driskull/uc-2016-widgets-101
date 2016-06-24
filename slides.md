@@ -624,9 +624,9 @@ Questions?
 # Widget Haiku
 
 <!-- work in progress -->
-We created them...
-easily with 3x and 4x
-now go build widgets
+> We created them...
+> easily with 3x and 4x
+> now go build widgets
 
 ![Thanks](./images/thanks.gif)
 
