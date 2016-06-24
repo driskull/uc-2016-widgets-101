@@ -310,10 +310,6 @@ and avoid inline styles
 
 ---
 
-
-
----
-
 # Accessibility (a11y)
 
 - Enable your application to be used by everyone
@@ -445,7 +441,7 @@ Here to help...
 - [Elm](https://github.com/odoe/esrijs4-vm-elm) – [demo](http://odoe.github.io/esrijs4-vm-elm/dist/)
 - [Ember](https://github.com/odoe/esrijs4-vm-ember)
 
-___
+---
 
 # Tips & best practices
 
