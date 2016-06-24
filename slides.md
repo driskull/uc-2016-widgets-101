@@ -629,10 +629,10 @@ Questions?
 
 <!-- work in progress -->
 
-```
-We created them...
-easily with 3x and 4x
-now go build widgets
+```text
+user conference—
+attended widget session
+satisfaction now
 ```
 
 ---
