@@ -423,21 +423,6 @@ Here to help...
 
 ---
 
-# ViewModel + framework integration
-
-- [Angular 2](https://github.com/odoe/esrijs4-vm-angular2) – [demo](http://odoe.github.io/esrijs4-vm-angular2/)
-- [React](https://github.com/odoe/esrijs4-vm-react) – [demo](http://odoe.github.io/esrijs4-vm-react/)
-- [Elm](https://github.com/odoe/esrijs4-vm-elm) – [demo](http://odoe.github.io/esrijs4-vm-elm/dist/)
-- [Ember](https://github.com/odoe/esrijs4-vm-ember)
-
----
-
-# ViewModel doc
-
-*
-
----
-
 # Let's update WikiWidget
 
 ## Key differences
@@ -449,6 +434,15 @@ Here to help...
 
 ---
 
+# Framework integration
+
+- [Angular 2](https://github.com/odoe/esrijs4-vm-angular2) – [demo](http://odoe.github.io/esrijs4-vm-angular2/)
+- [React](https://github.com/odoe/esrijs4-vm-react) – [demo](http://odoe.github.io/esrijs4-vm-react/)
+- [Elm](https://github.com/odoe/esrijs4-vm-elm) – [demo](http://odoe.github.io/esrijs4-vm-elm/dist/)
+- [Ember](https://github.com/odoe/esrijs4-vm-ember)
+
+___
+
 # Tips & best practices
 
 ![tricks](./images/best-practices.gif)
@@ -456,18 +450,24 @@ Here to help...
 ---
 
 # Use a styleguide
-  - helps keep your code organized
-  - defines rules for consistent code
-    - naming conventions
-    - whitespace
-    - common patterns
-    - etc...
+  - Helps keep your code organized
+  - Defines rules for consistent code
+    - Naming conventions
+    - Whitespace
+    - Common patterns
+    - Etc...
+  - Plenty of good options out there
+    - [Airbnb](https://github.com/airbnb/javascript)
+    - [Google](https://google.github.io/styleguide/javascriptguide.xml)
+    - [idiomatic](https://github.com/rwaldron/idiomatic.js/)
+    - [jQuery](https://contribute.jquery.org/style-guide/js/)
+    - [Dojo](https://dojotoolkit.org/reference-guide/1.10/developer/styleguide.html)
 
 ---
 
 # Linting
 
-Highlight issues in your code based on predefined rules.
+Highlight issues in your code based on predefined rules
 
 - [JSLint](http://jslint.com/)
 - [JSHint](http://jshint.com/)
@@ -477,7 +477,7 @@ Highlight issues in your code based on predefined rules.
 
 # Formatting
 
-Format your code based on predefined rules.
+Format your code based on predefined rules
 
   - [ESLint](http://eslint.org/)
   - [JS Beautifier](http://jsbeautifier.org/)
@@ -486,7 +486,7 @@ Format your code based on predefined rules.
 
 # Task runners
 
-Automate all the things.
+Automate all the things
 
 - [Grunt](http://gruntjs.com/)
 - [Gulp](http://gulpjs.com/)
@@ -497,7 +497,7 @@ Automate all the things.
 
 <!-- how do you catch bugs if you have no tests? -->
 <!-- takes time, but it's an investment -->
-Automated testing helps you catch regressions as you move forward.
+Automated testing helps you catch regressions as you move forward
 
 - [Intern](theintern.github.io)
 - [Jasmine](http://jasmine.github.io/)
@@ -508,7 +508,7 @@ Automated testing helps you catch regressions as you move forward.
 
 # Use the source, Luke.
 
-Use GitHub to browse code and learn more about existing projects.
+Use GitHub to browse code and learn more about existing projects
 
 - [dojo](https://github.com/dojo/dojo)
 - [dijit](https://github.com/dojo/dijit)
