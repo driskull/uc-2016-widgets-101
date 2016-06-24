@@ -20,15 +20,17 @@
 
   <script src="//js.arcgis.com/4.0"></script>
   <script>
-    var map, view;
+    var map, view, search;
 
     require([
       "esri/Map",
       "esri/views/MapView",
+      "esri/widgets/Search",
       "dojo/domReady!"
     ], function (
       Map,
-      MapView
+      MapView,
+      Search
     ) {
       map = new Map({
         basemap: "dark-gray"
@@ -40,6 +42,14 @@
         zoom: 14,
         center: [-117.1618, 32.7066]
       });
+
+      search = new Search({
+        view: view
+      });
+
+      search.search("San Diego Convention Center");
+
+      view.ui.add(search, "top-right");
     });
 
   </script>

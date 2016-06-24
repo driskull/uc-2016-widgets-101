@@ -531,7 +531,7 @@ Use GitHub to browse code and learn more about existing projects
   - [Sass](http://sass-lang.com)
   - [Stylus](http://stylus-lang.com/)
   - [Less](http://lesscss.org/)
-- Demo
+- [Demo](./restyling/)
 
 ---
 
