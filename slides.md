@@ -134,12 +134,37 @@ What you get
 * Called immediately when widget is created
 * Can be used for initialization
 
+  ```js
+  constructor: function() {
+    this._activeTasks = [];
+  }
+  ```
+
 ---
 
 # `postMixInProperties`
 
 * Called after properties have been mixed into the instance
-* Can be used to alter properties after being mixed in, but before rendering
+* Can be used to access/alter properties after being mixed in, but before rendering
+
+  ```js
+  postMixInProperties: function() {
+    this.get("inherited");
+
+    this._initialTitle = this.title;
+  }
+  ```
+
+  For example
+
+  ```js
+  var myWidget = new MyWidget({ title: "myTitle" }, "sample-node");
+
+  myWidget.toUppercase();
+
+  console.log(myWidget.title); // MYTITLE
+  console.log(myWidget._initialTitle); // myTitle
+  ```
 
 ---
 
@@ -148,13 +173,40 @@ What you get
 * Widget template is parsed and its DOM is available
 * Not attached to the DOM tree
 
+  ```js
+  buildRendering: function() {
+    this.get("inherited");
+
+    if (this.editMode) {
+      // editor added before widget is displayed
+      this._attachEditor(this.domNode);
+    }
+  }
+  ```
+
 ---
 
 # `postCreate`
 
 * Most widget DOM nodes are ready at this point
 * Widget not attached to the DOM yet
-* Most common point for customization
+* Most common point for adding custom logic
+
+  ```js
+  postCreate: function() {
+    this.get("inherited");
+
+    // set up event listeners
+    // `this.own` disposes handle when destroyed
+    this.own(
+      on(this.inputNode, "input", this._handleInput)
+    );
+
+    this._activeTasks.push(
+      this._initialize()
+    );
+  }
+  ```
 
 ---
 
@@ -164,6 +216,14 @@ What you get
 * Recommended point for doing size calculations
 * Must always call when creating widgets programmatically
 
+  ```js
+  startup: function() {
+    this.get("inherited");
+
+    this._resize();
+  }
+  ```
+
 ---
 
 # `destroy`
@@ -171,25 +231,17 @@ What you get
 * Used for teardown logic
 * By default, destroys top-level support widgets
 * Called manually to trigger widget disposal
+* All handles registered with `this.own` get removed
 
----
+  ```js
+  destroy: function() {
+    this.get("inherited");
 
-# Simple widget example
-
-```js
- var SimpleWidget = _WidgetBase.createSubclass({
-
-   constructor:         function () { },
-   postMixInProperties: function () { this.inherited(arguments) },
-   buildRendering:      function () { this.inherited(arguments) },
-   postCreate:          function () { this.inherited(arguments) },
-   startup:             function () { this.inherited(arguments) },
-   destroy:             function () { this.inherited(arguments) }
-
- });
-```
-
-[Learn more about dijit/_WidgetBase](https://dojotoolkit.org/documentation/tutorials/1.10/understanding_widgetbase/index.html)
+    this._activeTasks.forEach(function(process) {
+      process.cancel();
+    });
+  }
+  ```
 
 ---
 
@@ -650,6 +702,7 @@ Use GitHub to browse code and learn more about existing projects
 - [ArcGIS API for JavaScript 4.0 SDK](https://developers.arcgis.com/javascript/)
 - [Styling (4.0)](https://developers.arcgis.com/javascript/latest/guide/styling/index.html)
 - [Calcite dijit theme (3.x)](https://github.com/driskull/uc-2016-widgets-101/blob/gh-pages/extras/3x/calcite/)
+- [Understanding `dijit/_WidgetBase`](https://dojotoolkit.org/documentation/tutorials/1.10/understanding_widgetbase/index.html)
 
 ---
 
