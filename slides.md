@@ -667,34 +667,13 @@ Use GitHub to browse code and learn more about existing projects
 
 ---
 
-# Mind specificity
-
-```html
-<style>
-  #red { background-color: red; }  /* ID */
-
-  .blue { background-color: blue; }  /* class */
-  .green { background-color: green; }  /* class */
-
-  .blue.green { background-color: yellow; }  /* 2 classes */
-</style>
-
-<div id="red"
-    class="square green blue"
-    style="background-color: orange"></div>
-```
-
-* [Result](http://jsbin.com/kuqunasula/edit?html,output)
-* [Specificity calculator](http://specificity.keegan.st/)
-
----
-
 # CSS methodologies
 
 - Establish guidelines/rules for maintainable CSS
   - CSS & HTML best practices
   - Naming conventions
   - Ordering/grouping of CSS rules
+  - Help dealing with [specificity](http://driskull.github.io/uc-2016-widgets-101/blob/gh-pages/extras/specificity)
 - No silver bullet - choose what's best for your project/team
 - Flavors
   - [Block-Element-Modifier (BEM)](http://getbem.com/)
