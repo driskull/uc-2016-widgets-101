@@ -489,7 +489,7 @@ Use ViewModels to create custom UIs in the framework of your choice
 
 ---
 
-# Linting
+# Linting (code analysis)
 
 Highlight issues in your code based on predefined rules
 
@@ -618,6 +618,8 @@ Use GitHub to browse code and learn more about existing projects
 /* block__element--modifier */
 .example-widget__submit--disabled {}
 ```
+
+---
 
 # Wrapping up
 
