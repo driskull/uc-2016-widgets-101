@@ -245,6 +245,60 @@ What you get
 
 ---
 
+# Events
+
+```js
+// widget function
+startTimer: function() {
+  setInterval(function() {
+    this.emit("tick");
+  }.bind(this), 1000);
+}
+```
+
+```js
+timerWidget.on("tick", function() {
+  console.log("timer ticked!");
+});
+
+timerWidget.startTimer();
+
+// timer ticked!
+// timer ticked!
+// timer ticked!
+```
+
+---
+
+# Getters/Setters
+
+  ```js
+  widget.get("title"); // old
+
+  widget.set("title", "new");
+
+  widget.get("title"); // new
+  ```
+
+---
+
+# Watch
+
+  ```js
+  widget.watch("title", function(propName, oldValue, newValue) {
+    console.log(
+      propName + " changed from ", oldValue, " to ", newValue
+    );
+  });
+
+  widget.get("title"); // old
+
+  widget.set("title", "new"); // "title" changed from "old" to "new"
+
+  ```
+
+---
+
 # Code organization
 
 Keep code modular and organized
