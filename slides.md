@@ -565,6 +565,8 @@ Use ViewModels to create custom UIs in the framework of your choice
 - [Elm](https://github.com/odoe/esrijs4-vm-elm) – [demo](http://odoe.github.io/esrijs4-vm-elm/dist/)
 - [Ember](https://github.com/odoe/esrijs4-vm-ember)
 
+Rene Rubalcava - http://odoe.net/
+
 ---
 
 # WikiWidget + React?
