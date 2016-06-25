@@ -673,7 +673,7 @@ Use GitHub to browse code and learn more about existing projects
   - CSS & HTML best practices
   - Naming conventions
   - Ordering/grouping of CSS rules
-  - Help dealing with [specificity](http://driskull.github.io/uc-2016-widgets-101/blob/gh-pages/extras/specificity)
+  - Help dealing with [specificity](https://github.com/driskull/uc-2016-widgets-101/blob/gh-pages/extras/specificity)
 - No silver bullet - choose what's best for your project/team
 - Flavors
   - [Block-Element-Modifier (BEM)](http://getbem.com/)
