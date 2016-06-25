@@ -3,6 +3,8 @@
 <!-- Presenter: Matt -->
 # Widgets 101: Customizing and Creating Widgets with the ArcGIS API for JavaScript
 
+![qr](./images/qr.jpg)
+
 ### JC Franco – [@arfncode](https://twitter.com/arfncode)
 ### Matt Driscoll – [@driskull](https://twitter.com/driskull)
 
@@ -19,7 +21,7 @@
 **Short URL: [bit.ly/widgets101](http://bit.ly/widgets101)**
 
 - About widgets
-- Widget components
+- Building blocks
 - Building a widget
   - 3.x
   - 4.x
@@ -373,23 +375,19 @@ domClass.add("container-id", "round-borders");
 ---
 
 <!-- Presenter: Matt -->
+# Let's build a widget!
+
+![programmer](./images/programmer.gif)
+
+---
 
 # WikiWidget (requirements)
 
 * Use Wikipedia API to geosearch for entries
 * Display results in a list
 * List items should center on the map and display a popup
-* The popup should have a link for more info (wiki page) 
-
----
-
-# Demo WikiWidget
-
-[Finished 3x widget](http://driskull.github.io/uc-2016-widgets-101/finished/3x/)
-
----
-
-# Building WikiWidget
+* The popup should have a link for more info (wiki page)
+* [Preview](http://driskull.github.io/uc-2016-widgets-101/finished/3x/)
 
 ![programming!](./images/programming.gif)
 
@@ -471,7 +469,7 @@ Use ViewModels to create custom UIs in the framework of your choice
 
 # Tips & best practices
 
-![best-practices](./images/best-practices.gif)
+![learning](./images/learning.gif)
 
 ---
 
@@ -599,7 +597,7 @@ Use GitHub to browse code and learn more about existing projects
 
 ---
 
-### Example: Block Element Modifier (BEM)
+# Example: Block Element Modifier (BEM)
 
 - Uses delimiters to separate block, element, modifiers
 - Provides semantics (albeit verbose)
@@ -654,8 +652,14 @@ Use GitHub to browse code and learn more about existing projects
 
 ---
 
+# Wrapping up
+
+![wrap-up](./images/wrapup.gif)
+
+---
+
 <!-- Presenter: Matt -->
-## Suggested sessions
+# Suggested sessions
 
 - Wednesday
 
@@ -672,7 +676,7 @@ Use GitHub to browse code and learn more about existing projects
 
 ---
 
-## Additional resources
+# Additional resources
 
 - [ArcGIS API for JavaScript 4.0 SDK](https://developers.arcgis.com/javascript/)
 - [Styling (4.0)](https://developers.arcgis.com/javascript/latest/guide/styling/index.html)
