@@ -619,39 +619,6 @@ Use GitHub to browse code and learn more about existing projects
 .example-widget__submit--disabled {}
 ```
 
----
-
-# Calcite dijit theme (3.x)
-
-[![calcite-theme](./images/calcite-theme.png)](./extras/3x/calcite/)
-
----
-
-# Using calcite
-
-```html
-<link rel="stylesheet" href="<jsapi>/esri/themes/calcite/dijit/calcite.css">
-<link rel="stylesheet" href="<jsapi>/esri/themes/calcite/esri/esri.css">
-...
-<body class="calcite">
-```
-
----
-
-# Calcite supported widgets
-
-|||||
-|:-:|-|-|:-:|
-| BasemapGallery ||| LocateButton |
-| BasemapToggle ||| Measurement |
-| Bookmarks ||| OverviewMap |
-| Directions ||| Popup |
-| HomeButton ||| Print |
-| LayerSwipe ||| ScaleBar |
-| Legend ||| Search |
-
----
-
 # Wrapping up
 
 ![wrap-up](./images/wrapup.gif)
@@ -680,6 +647,7 @@ Use GitHub to browse code and learn more about existing projects
 
 - [ArcGIS API for JavaScript 4.0 SDK](https://developers.arcgis.com/javascript/)
 - [Styling (4.0)](https://developers.arcgis.com/javascript/latest/guide/styling/index.html)
+- [Calcite dijit theme (3.x)](https://github.com/driskull/uc-2016-widgets-101/blob/gh-pages/extras/3x/calcite/)
 
 ---
 
