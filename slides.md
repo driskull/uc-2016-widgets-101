@@ -189,7 +189,7 @@ What you get
  });
 ```
 
-[Learn more about dijit/_WidgetBase](https://dojotoolkit.org/reference-guide/1.10/dijit/_WidgetBase.html)
+[Learn more about dijit/_WidgetBase](https://dojotoolkit.org/documentation/tutorials/1.10/understanding_widgetbase/index.html)
 
 ---
 
