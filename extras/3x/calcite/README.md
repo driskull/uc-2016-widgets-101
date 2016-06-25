@@ -1,8 +1,8 @@
 # Calcite dijit theme (3.x)
 
-[![calcite-theme](./images/calcite-theme.png)](./index.html)
+[![calcite-theme](./images/calcite-theme.png)](http://driskull.github.io/uc-2016-widgets-101/extras/3x/calcite)
 
-[Demo](./index.html)
+[Demo](http://driskull.github.io/uc-2016-widgets-101/extras/3x/calcite)
 
 ## Using calcite
 
