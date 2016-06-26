@@ -1,4 +1,4 @@
-.esri-wikipedia {
+.esri-wikipedia-button {
   width: 32px;
   height: 32px;
   background-color: #fff;
@@ -8,26 +8,22 @@
   color: #4C4C4C;
   cursor: pointer;
   text-align: center;
-}
-.esri-wikipedia:hover {
-  background-color: #e2f1fb;
-}
-.esri-wikipedia .esri-icon {
   padding: 8px 0;
+  display: inline-block;
+  font-size: 16px;
+  line-height: 16px;
 }
-.esri-wikipedia:active {
+
+.esri-wikipedia-button:active {
   color: #0079c1;
   background-color: #aadbfa;
 }
 
-.esri-icon {
-  display: inline-block;
-  line-height: 16px;
-  font-size: 16px;
-  height: 16px;
+.esri-wikipedia-button:hover {
+  background-color: #e2f1fb;
 }
 
-.esri-wikipedia--active {
+.esri-wikipedia--active .esri-wikipedia-button {
   color: #0079c1;
   background-color: #aadbfa;
 }
@@ -45,6 +41,7 @@
   display: none;
   flex-direction: column;
 }
+
 .esri-wikipedia__panel .esri-icon-refresh {
   display: inline-block;
   margin-right: 5px;
@@ -74,9 +71,11 @@
   align-items: center;
   cursor: pointer;
 }
+
 .esri-wikipedia__result:hover {
   background-color: #e2f1fb;
 }
+
 .esri-wikipedia__result:first-child {
   border-top: 0;
 }
@@ -164,6 +163,7 @@
     transform: rotate(360deg);
   }
 }
+
 @keyframes esri-anim-rotate {
   0% {
     -webkit-transform: rotate(0);

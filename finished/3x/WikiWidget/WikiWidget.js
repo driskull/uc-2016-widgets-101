@@ -32,10 +32,11 @@ define([
   var MAX_RESULTS = 10;
 
   var CSS = {
-    // button
     base: "esri-wikipedia",
     active: "esri-wikipedia--active",
-    icon: "esri-icon socicon-wikipedia",
+    
+    // button
+    button: "esri-wikipedia-button socicon-wikipedia",
 
     // panel
     panel: "esri-wikipedia__panel",
@@ -63,8 +64,6 @@ define([
 
     templateString: templateString,
 
-    declaredClass: "esri.dijit.WikiWidget",
-
     //--------------------------------------------------------------------------
     //
     //  Lifecycle
@@ -83,7 +82,7 @@ define([
       domConstruct.place(this._panelNode, this.map.root);
 
       this.own(
-        on(this.domNode, a11yclick, lang.hitch(this, this._toggle)),
+        on(this._buttonNode, a11yclick, lang.hitch(this, this._toggle)),
         on(this._closeNode, a11yclick, lang.hitch(this, this._toggle)),
         on(this._resultListNode, on.selector("[data-id]", a11yclick), function () {
           var id = domAttr.get(this, "data-id");
@@ -236,6 +235,7 @@ define([
   
           entry = domConstruct.create("li", {
             tabindex: 0,
+            role: "menuitem",
             "data-id": item.id,
             className: CSS.item
           }, fragment);
