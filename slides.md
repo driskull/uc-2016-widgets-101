@@ -343,12 +343,10 @@ Keep code modular and organized
 /* ./MyWidget.js */
 define([
   "dijit/_WidgetBase",
-  "dijit/_TemplatedMixin",
-  "dojo/text!./templates/MyWidget.html"
+  "dijit/_TemplatedMixin"
 ],
 function (
-  _WidgetBase, _TemplatedMixin,
-  template
+  _WidgetBase, _TemplatedMixin
 ) {
 
   return _WidgetBase.createSubclass([_TemplatedMixin], {
