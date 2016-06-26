@@ -327,6 +327,8 @@ timerWidget.startTimer();
 
 Keep code modular and organized
 
+![modular](./images/modular.gif)
+
 ---
 
 # Code organization: HTML
