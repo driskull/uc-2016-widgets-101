@@ -752,15 +752,11 @@ Use GitHub to browse code and learn more about existing projects
 
 - [Understanding `dijit/_WidgetBase`](https://dojotoolkit.org/documentation/tutorials/1.10/understanding_widgetbase/index.html)
 - [ArcGIS API for JavaScript 3.0 SDK](https://developers.arcgis.com/javascript/3/)
-
-## 3.x
-
-- [Calcite dijit theme (3.x)](https://github.com/driskull/uc-2016-widgets-101/blob/gh-pages/extras/3x/calcite/)
-
-## 4.x
-
-- [ArcGIS API for JavaScript 4.0 SDK](https://developers.arcgis.com/javascript/)
-- [Styling (4.0)](https://developers.arcgis.com/javascript/latest/guide/styling/index.html)
+- 3.x
+  - [Calcite dijit theme (3.x)](https://github.com/driskull/uc-2016-widgets-101/blob/gh-pages/extras/3x/calcite/)
+- 4.x
+  - [ArcGIS API for JavaScript 4.0 SDK](https://developers.arcgis.com/javascript/)
+  - [Styling (4.0)](https://developers.arcgis.com/javascript/latest/guide/styling/index.html)
 
 ---
 
