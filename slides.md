@@ -663,9 +663,9 @@ Use GitHub to browse code and learn more about existing projects
 
 ---
 
-# Preprocessors
+# CSS preprocessors
 
-- Benefits
+- Features
   - Variables
   - Mixins
   - @import & @extend
