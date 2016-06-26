@@ -25,7 +25,13 @@ const CSS = {
 };
 
 const WikiWidget = React.createClass({
-
+  
+  //--------------------------------------------------------------------------
+  //
+  //  Lifecycle
+  //
+  //--------------------------------------------------------------------------
+  
   getInitialState() {
     return {
       vm: new WikiWidgetViewModel(),
@@ -44,11 +50,43 @@ const WikiWidget = React.createClass({
     this.props.view.then(view => {
       this.state.vm.view = view;
 
-      this.refresh();
+      this._refresh();
     });
   },
-
-  refresh() {
+  
+  render() {
+    let panelClasses = this.state.updating ?
+                       CSS.panel + " " + CSS.loading :
+                       CSS.panel;
+    
+    return (
+      <div className={panelClasses}>
+        <div className={CSS.header}>
+          <h1 className={CSS.title}>{"Wikipedia"}</h1>
+        </div>
+        <div className={CSS.scroller}>
+          <ol className={CSS.list}>
+              {this._generateListItems()}
+          </ol>
+        </div>
+        <div className={CSS.footer}>
+          <div className={CSS.refresh} title={"Refresh"} tabIndex={0}
+               onClick={this._refresh}>
+            <span className={CSS.refreshIcon}></span>
+               {"Refresh"}
+          </div>
+        </div>
+      </div>
+    );
+  },
+  
+  //--------------------------------------------------------------------------
+  //
+  //  Private Methods
+  //
+  //--------------------------------------------------------------------------
+  
+  _refresh() {
     this._showLoadingStatus();
 
     this.state.vm.getNearbyItems()
@@ -123,34 +161,8 @@ const WikiWidget = React.createClass({
 
   _highlightItem: function(index) {
     this.state.vm.highlight(index);
-  },
-
-  render() {
-    let panelClasses = this.state.updating ?
-                       CSS.panel + " " + CSS.loading :
-                       CSS.panel;
-
-    return (
-      <div className={panelClasses}>
-        <div className={CSS.header}>
-          <h1 className={CSS.title}>{"Wikipedia"}</h1>
-        </div>
-        <div className={CSS.scroller}>
-          <ol className={CSS.list}>
-            {this._generateListItems()}
-          </ol>
-        </div>
-        <div className={CSS.footer}>
-          <div className={CSS.refresh} title={"Refresh"} tabIndex={0}
-               onClick={this.refresh}>
-            <span className={CSS.refreshIcon}></span>
-            {"Refresh"}
-          </div>
-        </div>
-      </div>
-    );
-
   }
+
 });
 
 export default WikiWidget;
