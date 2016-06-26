@@ -149,10 +149,18 @@ What you get
 
 * Called immediately when widget is created
 * Can be used for initialization
+* Can be used to manipulate widget parameters
 
   ```js
-  constructor: function() {
+  constructor: function(params) {
+    // initialize private variables
     this._activeTasks = [];
+
+    // manipulate user-provided params
+    if (params && params.oldProp {
+      params.newProp = params.oldProp;
+      delete params.oldProp;
+    }
   }
   ```
 
@@ -325,7 +333,7 @@ Keep code modular and organized
 
 - Extract HTML to separate file
 - Mix in `dijit/_TemplatedMixin`
-  - Renders HTML based on a template string
+  - Renders HTML based on a template string (use `dojo/text` plugin)
   - Create DOM node attachments
 
 ---
@@ -352,7 +360,7 @@ function (
   return _WidgetBase.createSubclass([_TemplatedMixin], {
 
     templateString: "<div style='background-color: chartreuse;'>" +
-                      "<label style='font-weight: bolder;'>:)</label>" +
+                      "<label style='font-weight: bolder;'>°˖✧◝(⁰▿⁰)◜✧˖°</label>" +
                     "</div>";
   });
 
@@ -381,6 +389,7 @@ function (
 .my-widget {
   background-color: chartreuse
 }
+
 .my-widget__text {
   font-size: 1.5em;
 }
@@ -439,8 +448,7 @@ and avoid inline styles
   - Keyboard
   - Touch
   - Screen reader
-- Use semantic markup
-- ARIA roles
+- semantic markup, ARIA roles
 - `dijit/a11yclick`
 
 ---
@@ -554,7 +562,6 @@ domClass.add("container-id", "round-borders");
 - Reusable
 - Testable
   - Logic without UI concerns
-- Separates concerns
 - Framework compatibility
 
 ---
@@ -567,6 +574,12 @@ domClass.add("container-id", "round-borders");
 * Extract non-UI code to a ViewModel
 
 [Steps](https://github.com/driskull/uc-2016-widgets-101/blob/gh-pages/steps/4x.md)
+
+---
+
+# WikiWidget + React
+
+[Demo](./extras/4x/integration)
 
 ---
 
@@ -583,12 +596,6 @@ Rene Rubalcava - http://odoe.net/
 
 ---
 
-# WikiWidget + React?
-
-[Demo](./extras/4x/integration)
-
----
-
 # Tips & best practices
 
 ![learning](./images/learning.gif)
@@ -596,13 +603,12 @@ Rene Rubalcava - http://odoe.net/
 ---
 
 # Use a styleguide
-  - Helps keep your code organized
   - Defines rules for consistent code
     - Naming conventions
     - Whitespace
     - Common patterns
     - Etc...
-  - Plenty of good options out there
+  - Some options
     - [Airbnb](https://github.com/airbnb/javascript)
     - [Google](https://google.github.io/styleguide/javascriptguide.xml)
     - [idiomatic](https://github.com/rwaldron/idiomatic.js/)
@@ -625,8 +631,8 @@ Highlight issues in your code based on predefined rules
 
 Format your code based on predefined rules
 
-  - [ESLint](http://eslint.org/)
-  - [JS Beautifier](http://jsbeautifier.org/)
+- [ESLint](http://eslint.org/)
+- [JS Beautifier](http://jsbeautifier.org/)
 
 ---
 
@@ -652,17 +658,6 @@ Automated testing helps you catch regressions as you move forward
 
 ---
 
-# Use the source, Luke.
-
-Use GitHub to browse code and learn more about existing projects
-
-- [dojo](https://github.com/dojo/dojo)
-- [dijit](https://github.com/dojo/dijit)
-- [dojox](https://github.com/dojo/dojox)
-- etc...
-
----
-
 # CSS preprocessors
 
 - Features
@@ -670,7 +665,7 @@ Use GitHub to browse code and learn more about existing projects
   - Mixins
   - @import & @extend
 - Allow us to
-  - Restyle
+  - Restyle quickly
   - Theme
   - Write less code
 - Flavors
@@ -688,13 +683,13 @@ Use GitHub to browse code and learn more about existing projects
   - Naming conventions
   - Ordering/grouping of CSS rules
   - Help dealing with [specificity](https://github.com/driskull/uc-2016-widgets-101/blob/gh-pages/extras/specificity)
-- No silver bullet - choose what's best for your project/team
 - Flavors
   - [Block-Element-Modifier (BEM)](http://getbem.com/)
   - [Scalable and Modular Architecture for CSS (SMACSS)](https://smacss.com/)
   - [Object Oriented CSS (OOCSS)](https://github.com/stubbornella/oocss/wiki)
   - [SUIT CSS](http://suitcss.github.io/)
   - [Atomic OOBEMITSCSS](http://www.sitepoint.com/atomic-oobemitscss/)
+- No silver bullet - choose what's best for your project/team
 
 ---
 
@@ -719,6 +714,17 @@ Use GitHub to browse code and learn more about existing projects
 /* block__element--modifier */
 .example-widget__submit--disabled {}
 ```
+
+---
+
+# Use the source, Luke.
+
+Use GitHub to browse code and learn more about existing projects
+
+- [dojo](https://github.com/dojo/dojo)
+- [dijit](https://github.com/dojo/dijit)
+- [dojox](https://github.com/dojo/dojox)
+- etc...
 
 ---
 
