@@ -90,13 +90,11 @@ function (
         results: results
       });
   
-      console.log("adding");
       results.forEach(function(result) {
         var graphic = wikiHelper._createGraphic(result);
     
         view.graphics.add(graphic);
         resultGraphics.push(graphic);
-        console.log("added");
       });
       
       return resultGraphics;
