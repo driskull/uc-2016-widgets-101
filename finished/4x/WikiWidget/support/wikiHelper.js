@@ -200,14 +200,14 @@ function (
     
     _createGraphic: function (result) {
       
-      // remove Point from attributes – PopupRenderer bug (cloning Accessor instance breaks)
-      var pointLessAttributes = lang.mixin({}, result);
-      delete pointLessAttributes.point;
+      // remove unnecessary geometry from attributes
+      var attributes = lang.mixin({}, result);
+      delete attributes.point;
   
       return new Graphic({
         geometry: result.point,
         symbol: SYMBOL,
-        attributes: pointLessAttributes,
+        attributes: attributes,
         popupTemplate: new PopupTemplate({
           title: "{title}",
           content: "<a target=\"_blank\" href=\"{url}\">" + i18n.moreInfo + "</a>"
