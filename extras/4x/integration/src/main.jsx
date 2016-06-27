@@ -15,8 +15,8 @@ const map = new Map({ basemap: 'dark-gray'});
 const view = new MapView({
   container: document.getElementById('viewDiv'),
   map,
-  center: [-116.51327133175782, 33.82029520464912],
-  zoom: 10,
+  center: [-117.1618, 32.7066],
+  zoom: 14,
   ui: {
     components: [] // empty the UI
   }
