@@ -1,29 +1,30 @@
 define([
+  "dojo/_base/array",
   "dojo/_base/lang",
-  
-  "esri/geometry/Point",
+
   "esri/geometry/support/mathUtils",
+  "esri/geometry/Point",
   "esri/geometry/support/webMercatorUtils",
-  
+
   "esri/Graphic",
   "esri/PopupTemplate",
   "esri/request",
-  
+
   "esri/symbols/PictureMarkerSymbol",
-  
+
   "dojo/i18n!../nls/WikiWidget",
-  
+
   "require"
 ],
 function (
-  lang,
-  Point, mathUtils, webMercatorUtils,
+  array, lang,
+  mathUtils, Point, webMercatorUtils,
   Graphic, PopupTemplate, esriRequest,
   PictureMarkerSymbol,
   i18n,
   require
 ) {
-  
+
   var WIKI_QUERY_URL = "//en.wikipedia.org/w/api.php";
   var THUMBNAIL_SIZE = 125;
   
@@ -43,7 +44,7 @@ function (
   }
   
   var wikiHelper = {
-    
+  
     //--------------------------------------------------------------------------
     //
     //  Public Methods
@@ -79,42 +80,42 @@ function (
         clamp(Math.ceil(distance), minSearchRadius, maxSearchRadius)
       );
     },
-    
+  
     addResultGraphics: function (params) {
-      var view           = params.view,
-          results        = params.results,
+      var view     = params.view,
+          results = params.results,
           resultGraphics = [];
-      
+    
       wikiHelper.clearResultGraphics({
         view: view,
         results: results
       });
-  
-      results.forEach(function(result) {
-        var graphic = wikiHelper._createGraphic(result);
     
+      array.forEach(results, function (result) {
+        var graphic = wikiHelper._createGraphic(result);
+        
         view.graphics.add(graphic);
         resultGraphics.push(graphic);
       });
-      
+  
       return resultGraphics;
     },
-    
+  
     clearResultGraphics: function (params) {
       var view    = params.view,
           results = params.results;
-  
+    
       view.graphics.removeMany(results);
       view.popup.visible = false;
     },
-    
+  
     highlightGraphic: function (params) {
       var graphic = wikiHelper._findGraphicById({
             id: params.id,
             results: params.results
           }),
           view    = params.view;
-  
+    
       view.goTo(graphic.geometry).then(function () {
         view.popup.open({
           features: [graphic],
@@ -122,18 +123,18 @@ function (
         });
       });
     },
-    
+  
     //--------------------------------------------------------------------------
     //
     //  Private Methods
     //
     //--------------------------------------------------------------------------
-    
+  
     _findNearbyItems: function(options) {
       var maxResults   = options.maxResults,
           searchRadius = options.searchRadius,
           center       = webMercatorUtils.webMercatorToGeographic(options.center);
-      
+    
       return esriRequest(WIKI_QUERY_URL, {
         callbackParamName: "callback",
         query: {
@@ -149,15 +150,15 @@ function (
           return response.data;
         });
     },
-    
+  
     _getPageInfo: function(options) {
       var geoSearch  = lang.getObject("query.geosearch", false, options.geoResponse),
           maxResults = options.maxResults,
-      
-          pageIds    = geoSearch.map(function(result) {
+    
+          pageIds    = array.map(geoSearch, function(result) {
             return result.pageid;
           }).join("|");
-  
+    
       return esriRequest(WIKI_QUERY_URL, {
         callbackParamName: "callback",
         query: {
@@ -181,12 +182,20 @@ function (
     
     _toResultItems: function(results) {
       var pages     = lang.getObject("page.query.pages", false, results),
-          geoSearch = lang.getObject("geo.query.geosearch", false, results);
+          geoSearch = results.geo.query.geosearch;
   
-      return geoSearch.map(function(result) {
+      return array.map(geoSearch, function(result) {
         var pageInfo  = pages[result.pageid] || {},
             imagePath = lang.getObject("thumbnail.source", false, pageInfo) || null,
             url       = pageInfo.canonicalurl;
+  
+        // console.log({
+        //   id: result.pageid,
+        //     title: result.title,
+        //   point: webMercatorUtils.geographicToWebMercator(new Point(result.lon, result.lat)),
+        //   url: url,
+        //   image: imagePath
+        // })
         
         return {
           id: result.pageid,
@@ -197,42 +206,41 @@ function (
         };
       });
     },
-    
+  
     _createGraphic: function (result) {
-      
+    
       // remove unnecessary geometry from attributes
       var attributes = lang.mixin({}, result);
       delete attributes.point;
-  
-      return new Graphic({
-        geometry: result.point,
-        symbol: SYMBOL,
-        attributes: attributes,
-        popupTemplate: new PopupTemplate({
-          title: "{title}",
-          content: "<a target=\"_blank\" href=\"{url}\">" + i18n.moreInfo + "</a>"
-        })
-      });
-    },
     
+      var content = "<a target=\"_blank\" href=\"{url}\">" + i18n.moreInfo + "</a>",
+          popupTemplate = new PopupTemplate(({
+              title: "{title}",
+              content: content
+            })
+          );
+    
+      return new Graphic(result.point, SYMBOL, attributes, popupTemplate);
+    },
+  
     _findGraphicById: function (params) {
-      var id      = params.id,
+      var id = params.id,
           results = params.results,
           match;
-  
-      results.some(function(graphic) {
+    
+      array.some(results, function (graphic) {
         var found = graphic.attributes.id == id;
         if (found) {
           match = graphic;
         }
         return found;
       });
-      
+    
       return match;
     }
     
   };
-  
+
   return wikiHelper;
-  
+
 });

@@ -1,15 +1,20 @@
-<div tabindex="0">
-  <span class="${_css.icon}"></span>
+<div>
+  <!-- Button Icon -->
+  <span class="${_css.button}" role="button" tabindex="0" data-dojo-attach-point="_buttonNode"></span>
+  <!-- Panel -->
   <div class="${_css.panel}" data-dojo-attach-point="_panelNode">
+    <!-- Panel header -->
     <div class="${_css.header}">
       <h1 class="${_css.title}">${_i18n.wikipedia}</h1>
-      <div title="${_i18n.close}" class="${_css.close}" data-dojo-attach-point="_closeNode" tabindex="0"></div>
+      <div title="${_i18n.close}" class="${_css.close}" data-dojo-attach-point="_closeNode" tabindex="0" role="button"></div>
     </div>
+    <!-- Scrollable list -->
     <div class="${_css.scroller}">
-      <ol class="${_css.list}" data-dojo-attach-point="_resultListNode"></ol>
+      <ol class="${_css.list}" data-dojo-attach-point="_resultListNode" role="menu"></ol>
     </div>
+    <!-- Footer -->
     <div class="${_css.footer}">
-      <div class="${_css.refresh}" title="${_i18n.refresh}" data-dojo-attach-point="_refreshNode" tabindex="0">
+      <div class="${_css.refresh}" title="${_i18n.refresh}" data-dojo-attach-point="_refreshNode" tabindex="0" role="button">
         <span class="${_css.refreshIcon}"></span>${_i18n.refresh}
       </div>
     </div>

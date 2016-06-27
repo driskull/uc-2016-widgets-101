@@ -1,8 +1,12 @@
 define([
   "./WikiWidgetViewModel",
-
+  
+  "dijit/_WidgetBase",
   "dijit/_TemplatedMixin",
   "dijit/a11yclick",
+
+  "dojo/_base/array",
+  "dojo/_base/lang",
 
   "dojo/dom-attr",
   "dojo/dom-class",
@@ -10,26 +14,25 @@ define([
   "dojo/dom-style",
   "dojo/on",
 
-  "esri/widgets/Widget",
-  "esri/widgets/support/viewModelWiring",
-
   "dojo/i18n!./nls/WikiWidget",
 
   "dojo/text!./templates/WikiWidget.html"
 ], function (
   WikiWidgetViewModel,
+  _WidgetBase,
   _TemplatedMixin, a11yclick,
+  array, lang,
   domAttr, domClass, domConstruct, domStyle, on,
-  Widget, viewModelWiring,
   i18n,
   templateString
 ) {
 
   var CSS = {
-    // button
     base: "esri-wikipedia",
     active: "esri-wikipedia--active",
-    icon: "esri-icon socicon-wikipedia",
+    
+    // button
+    button: "esri-wikipedia-button socicon-wikipedia",
 
     // panel
     panel: "esri-wikipedia__panel",
@@ -47,24 +50,15 @@ define([
     item: "esri-wikipedia__result",
     image: "esri-wikipedia__result-image",
     noImage: "esri-wikipedia__result-image--none",
-    noImageIcon: "esri-wikipedia--deny-icon esri-icon-deny",
     header: "esri-wikipedia__header",
     footer: "esri-wikipedia__footer"
   };
 
-  var WikiWidget = Widget.createSubclass([_TemplatedMixin], {
-  
-    properties: {
-      viewModel: {
-        type: WikiWidgetViewModel
-      }
-    },
+  return _WidgetBase.createSubclass([_TemplatedMixin], {
 
     baseClass: CSS.base,
 
     templateString: templateString,
-
-    declaredClass: "esri.widgets.WikiWidget",
 
     //--------------------------------------------------------------------------
     //
@@ -72,29 +66,26 @@ define([
     //
     //--------------------------------------------------------------------------
 
-    constructor: function () {
-      this._updateList = this._updateList.bind(this);
-      this._showLoadingStatus = this._showLoadingStatus.bind(this);
-      this._hideLoadingStatus = this._hideLoadingStatus.bind(this);
-      this._openPanel = this._openPanel.bind(this);
-      this._toggle = this._toggle.bind(this);
-      this._refresh = this._refresh.bind(this);
+    constructor: function(params) {
+      this.viewModel = new WikiWidgetViewModel(params);
     },
-
+    
     postCreate: function () {
-      var _self = this;
-
+      var self = this;
+  
       this.inherited(arguments);
-  
+
       domConstruct.place(this._panelNode, this.viewModel.view.container);
-  
+
       this.own(
-        on(this.domNode, a11yclick, this._toggle),
-        on(this._closeNode, a11yclick, this._toggle),
+        on(this._buttonNode, a11yclick, lang.hitch(this, this._toggle)),
+        on(this._closeNode, a11yclick, lang.hitch(this, this._toggle)),
         on(this._resultListNode, on.selector("[data-id]", a11yclick), function () {
-          _self.viewModel.highlight(domAttr.get(this, "data-id"));
+          var id = domAttr.get(this, "data-id");
+  
+          self.viewModel.highlight(id);
         }),
-        on(this._refreshNode, a11yclick, this._refresh)
+        on(this._refreshNode, a11yclick, lang.hitch(this, this._refresh))
       );
     },
 
@@ -110,25 +101,17 @@ define([
 
     _active: false,
 
-    _resultGraphics: null,
-
     //--------------------------------------------------------------------------
     //
     //  Properties
     //
     //--------------------------------------------------------------------------
-
+    
     //----------------------------------
-    //  active
-    //----------------------------------
-
-    //----------------------------------
-    //  maxResults
+    //  viewModel
     //----------------------------------
 
-    //----------------------------------
-    //  view
-    //----------------------------------
+    viewModel: null,
 
     //--------------------------------------------------------------------------
     //
@@ -137,15 +120,9 @@ define([
     //--------------------------------------------------------------------------
 
     _toggle: function () {
-      // TODO: revisit state usage
-      if (this.get("viewModel.state") === "disabled") {
-        return;
-      }
-
       this._active = !this._active;
 
-      var active = this._active;
-      if (active) {
+      if (this._active) {
         this._openPanel();
         this._refresh();
       }
@@ -154,16 +131,15 @@ define([
         this._closePanel();
       }
 
-      domClass.toggle(this.domNode, CSS.active, active);
+      domClass.toggle(this.domNode, CSS.active, this._active);
     },
 
-    _refresh: function() {
-      this._showLoadingStatus();
+    _openPanel: function () {
+      domClass.add(this._panelNode, CSS.panelOpen);
+    },
 
-      this.viewModel.getNearbyItems()
-        .then(this._updateList)
-        .then(this._addResultGraphics)
-        .always(this._hideLoadingStatus);
+    _closePanel: function () {
+      domClass.remove(this._panelNode, CSS.panelOpen);
     },
 
     _showLoadingStatus: function () {
@@ -178,17 +154,18 @@ define([
     _hideLoadingStatus: function () {
       domClass.remove(this._panelNode, CSS.loading);
     },
-
-    _openPanel: function () {
-      domClass.add(this._panelNode, CSS.panelOpen);
-    },
-
-    _closePanel: function () {
-      domClass.remove(this._panelNode, CSS.panelOpen);
+    
+    _refresh: function() {
+      this._showLoadingStatus();
+  
+      this.viewModel.getNearbyItems()
+        .then(lang.hitch(this, this._updateList))
+        .always(lang.hitch(this, this._hideLoadingStatus));
     },
 
     _updateList: function (items) {
-      var fragment = document.createDocumentFragment();
+      var fragment = document.createDocumentFragment(),
+          entry, image, title;
 
       if (items.length === 0) {
         domConstruct.create("li", {
@@ -197,23 +174,20 @@ define([
         }, fragment);
       }
       else {
-        items.forEach(function (item) {
-          // FIXME item should be data and not Graphic instance
-          item = item.attributes;
-          
-          
-          var entry = domConstruct.create("li", {
+        array.forEach(items, function (item) {
+          entry = domConstruct.create("li", {
             tabindex: 0,
+            role: "menuitem",
             "data-id": item.id,
             className: CSS.item
           }, fragment);
-
-          var image = domConstruct.create("span", {
+  
+          image = domConstruct.create("span", {
             title: item.title,
             className: CSS.image
           }, entry);
-
-          var title = domConstruct.create("span", {
+  
+          title = domConstruct.create("span", {
             textContent: item.title
           }, entry);
 
@@ -224,7 +198,7 @@ define([
             domClass.add(image, CSS.icon);
           }
 
-        }, this);
+        });
       }
 
       domConstruct.place(fragment, this._resultListNode, "only");
@@ -233,7 +207,5 @@ define([
     }
 
   });
-
-  return WikiWidget;
 
 });

@@ -19,7 +19,7 @@
       color:#fff;
       background-color: #000;
     }
-
+    
     .esri-wikipedia {
       position: absolute;
       top: 92px;
@@ -62,19 +62,17 @@
       });
 
       view = new MapView({
-        container: "view",
         map: map,
+        container: "view",
+        basemap: "dark-gray",
         zoom: 14,
         center: [-117.1618, 32.7066]
       });
 
       wikiWidget = new WikiWidget({
-        viewModel: {
-          view: view
-        }
+        view: view
       }, "WikiWidget");
       wikiWidget.startup();
-
     });
   </script>
 
@@ -82,7 +80,7 @@
 
 <body>
   <div id="WikiWidget"></div>
-  <div id="view"></div>
+  <div id="view" class="view"></div>
 </body>
 
 </html>
