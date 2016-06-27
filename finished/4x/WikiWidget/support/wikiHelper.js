@@ -144,11 +144,14 @@ function (
           gscoord: center.y + "|" + center.x,
           format: "json"
         }
-      });
+      })
+        .then(function(response) {
+          return response.data;
+        });
     },
     
     _getPageInfo: function(options) {
-      var geoSearch  = lang.getObject("data.query.geosearch", false, options.geoResponse),
+      var geoSearch  = lang.getObject("query.geosearch", false, options.geoResponse),
           maxResults = options.maxResults,
       
           pageIds    = geoSearch.map(function(result) {
@@ -171,14 +174,14 @@ function (
         .then(function(pageResponse) {
           return {
             geo: options.geoResponse,
-            page: pageResponse
+            page: pageResponse.data
           };
         });
     },
     
     _toResultItems: function(results) {
-      var pages     = lang.getObject("page.data.query.pages", false, results),
-          geoSearch = lang.getObject("geo.data.query.geosearch", false, results);
+      var pages     = lang.getObject("page.query.pages", false, results),
+          geoSearch = lang.getObject("geo.query.geosearch", false, results);
   
       return geoSearch.map(function(result) {
         var pageInfo  = pages[result.pageid] || {},
