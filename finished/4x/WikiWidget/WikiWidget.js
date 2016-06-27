@@ -85,7 +85,9 @@ define([
       var _self = this;
 
       this.inherited(arguments);
-
+  
+      domConstruct.place(this._panelNode, this.viewModel.view.container);
+  
       this.own(
         on(this.domNode, a11yclick, this._toggle),
         on(this._closeNode, a11yclick, this._toggle),
@@ -178,12 +180,10 @@ define([
     },
 
     _openPanel: function () {
-      domConstruct.place(this._panelNode, this.viewModel.view.container);
       domClass.add(this._panelNode, CSS.panelOpen);
     },
 
     _closePanel: function () {
-      this.viewModel.view.container.removeChild(this._panelNode);
       domClass.remove(this._panelNode, CSS.panelOpen);
     },
 
