@@ -570,11 +570,6 @@ domClass.add("container-id", "round-borders");
 
 # Let's update WikiWidget
 
-## Key differences
-
-* Adjust to 4.x API
-* Extract non-UI code to a ViewModel
-
 [Steps](https://github.com/driskull/uc-2016-widgets-101/blob/gh-pages/steps/4x.md)
 
 ---
