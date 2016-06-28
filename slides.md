@@ -690,30 +690,6 @@ Automated testing helps you catch regressions as you move forward
 
 ---
 
-# Example: Block Element Modifier (BEM)
-
-- Uses delimiters to separate block, element, modifiers
-- Provides semantics (albeit verbose)
-- Keeps specificity low
-- Scopes styles to blocks
-
-```css
-/* block */
-.example-widget {}
-
-/* block__element */
-.example-widget__input {}
-.example-widget__submit {}
-
-/* block--modifier */
-.example-widget--loading {}
-
-/* block__element--modifier */
-.example-widget__submit--disabled {}
-```
-
----
-
 # Use the source, Luke.
 
 Use GitHub to browse code and learn more about existing projects
