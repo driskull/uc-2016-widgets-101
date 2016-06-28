@@ -124,33 +124,24 @@ const WikiWidget = React.createClass({
         </li>
       );
     }
-    // todo: sync properly
-    //else if (noResults) {
-    //  items = (
-    //    <li className={CSS.message}>
-    //      {"No results"}
-    //    </li>
-    //  );
-    //}
     else {
       items = this.state.results.map(function(item, index) {
         let styles = {};
         let imageClass = CSS.image;
-        let attribs = item.attributes;
 
-        if (attribs.image) {
-          styles.backgroundImage = "url('" + attribs.image + "')";
+        if (item.image) {
+          styles.backgroundImage = "url('" + item.image + "')";
         }
         else {
           imageClass += " " + CSS.icon;
         }
 
         return (
-          <li className={CSS.item} data-id={attribs.id} tabIndex={0}
-              onClick={this._highlightItem.bind(this, attribs.id)} key={index}>
-            <span className={imageClass} title={attribs.title}
+          <li className={CSS.item} data-id={item.id} tabIndex={0}
+              onClick={this._highlightItem.bind(this, item.id)} key={index}>
+            <span className={imageClass} title={item.title}
                   style={styles}></span>
-            <span>{attribs.title}</span>
+            <span>{item.title}</span>
           </li>
         )
       }, this);
